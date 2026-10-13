@@ -1,0 +1,40 @@
+schema_version: 1
+id: jade-traveler
+settings:
+  width: 768
+  height: 768
+  frames: 56
+  fps: 24
+  steps: 40
+  seed: 41
+  mid_guide_frame: 27
+  palette_size: 96
+  pivot:
+  - 128
+  - 240
+  extra_guide_frames: []
+directions:
+  down:
+    master: prepared/down.png
+    prompt_file: prompts/down.txt
+    seed: 241
+  up:
+    master: prepared/up.png
+    prompt_file: prompts/up-v3.txt
+    seed: 443
+  left:
+    master: prepared/left.png
+    prompt_file: prompts/left.txt
+    seed: 341
+  right:
+    master: prepared/right.png
+    prompt_file: prompts/right.txt
+    seed: 41
+design:
+  user_selected: right-v2
+  user_confirmation: "\u7528\u8FD9\u4E00\u7A3F\u7EE7\u7EED"
+  date: '2026-10-13'
+  satchel_anatomy: right hip, strap from left shoulder
+  hair: two high unbraided ponytails
+  metal: silver hair cuffs, cape brooch, wrist cuffs, waist ornaments, bag clasp,
+    boot buckles

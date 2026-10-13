@@ -1,0 +1,111 @@
+{
+  "fps": 30,
+  "size": [
+    1920,
+    1080
+  ],
+  "parts": [
+    {
+      "id": "roam",
+      "title": "夜晚漫游",
+      "frames": 300,
+      "source": "来源：Godot Forward+ / 夜晚漫游工作流",
+      "short_title": "漫游",
+      "description": "夜景漫游，观察行走与环境"
+    },
+    {
+      "id": "cardinal",
+      "title": "四向光照",
+      "frames": 720,
+      "source": "来源：Godot Forward+ / 已保存的四向光照参数",
+      "short_title": "四向",
+      "description": "原色与灰材质对照"
+    },
+    {
+      "id": "orbit",
+      "title": "冷暖环绕光",
+      "frames": 1080,
+      "source": "来源：Godot Forward+ / 冷暖环绕光工作流",
+      "short_title": "环绕",
+      "description": "低位扫光，再经头顶返回"
+    },
+    {
+      "id": "design",
+      "title": "角色设计",
+      "frames": 360,
+      "short_title": "设计",
+      "description": "人物设定与概念选稿"
+    },
+    {
+      "id": "masters",
+      "title": "四方向母版",
+      "frames": 360,
+      "short_title": "母版",
+      "description": "各方向独立生成参考图"
+    },
+    {
+      "id": "install",
+      "title": "安装与模型",
+      "frames": 420,
+      "short_title": "环境",
+      "description": "实验环境与依赖，安装参考项目文档"
+    },
+    {
+      "id": "workflow",
+      "title": "H3 动画生成",
+      "frames": 420,
+      "short_title": "H3",
+      "description": "母版驱动动画，保留全部原帧"
+    },
+    {
+      "id": "failure",
+      "title": "背面步态修订",
+      "frames": 240,
+      "subtitle": "踩坑记录",
+      "short_title": "背面",
+      "description": "踩坑：背向条件与双脚交替"
+    },
+    {
+      "id": "extract",
+      "title": "抠图与选帧",
+      "frames": 360,
+      "subtitle": "踩坑记录",
+      "short_title": "抠图",
+      "description": "踩坑：量化前去除背景残留"
+    },
+    {
+      "id": "normals",
+      "title": "法线与银饰蒙版",
+      "frames": 420,
+      "subtitle": "踩坑记录",
+      "short_title": "法线",
+      "description": "踩坑：表面朝向与金属范围"
+    },
+    {
+      "id": "topic",
+      "title": "局部形体与体积",
+      "frames": 300,
+      "subtitle": "踩坑记录",
+      "short_title": "体积",
+      "description": "踩坑：加强局部，减弱整块鼓包"
+    },
+    {
+      "id": "ownership",
+      "title": "外部块修复",
+      "frames": 300,
+      "subtitle": "踩坑记录",
+      "short_title": "修复",
+      "description": "踩坑：鼻部与银饰逐帧归属"
+    },
+    {
+      "id": "ending",
+      "title": "制作记录与仓库",
+      "frames": 120,
+      "subtitle": "踩坑记录",
+      "short_title": "片尾",
+      "description": "制作记录与独立项目"
+    }
+  ],
+  "duration": 180,
+  "effects_first": true
+}

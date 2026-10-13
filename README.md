@@ -8,6 +8,8 @@
 
 青绿少女四方向已实际生成，256动画、108帧法线和金属蒙版已在Godot GPU验证，制作实录见 [青绿少女案例](docs/jade-traveler-production.md)。模型推理具有随机性，提示词和来源摘要用于追踪，不承诺不同设备生成相同像素。游戏演示和视频不会改变正式主角。
 
+最新视频采用效果先行的三分钟结构、jibijibi-game 像素字体和分段进度 overlay。新增实际 GPU 交互调参和保存工具；当前四向片使用用户选定的点光 2.65、环境光 0，动画以 1× 正常行走，当前方向以四种颜色高亮，见 [剪辑 runbook](docs/runbooks/06-editing.md)。冷暖环绕已按用户确认的新参数替换，底部采用原配色分段框，短标题在框内、上方附说明。制作页注明实际模型／工作流来源与失败／纠正环节，素材图分别解释用途；片尾含像素文字“三连”动画。
+
 ## 安装与使用
 
 ```sh
@@ -30,6 +32,12 @@ make wheel
 4. [法线自动绘制、材质蒙版与修订](docs/runbooks/04-normals.md)。
 5. [Godot 临时导入与视频录制](docs/runbooks/05-godot-video.md)。
 6. [剪辑与文案协作](docs/runbooks/06-editing.md)。
+
+新增逐帧脸部与银饰标注接口，详见 [外部块与像素归属](docs/topics/foreground-and-material-ownership.md)。用户已确认鼻部与脸颈外部块修复并要求采用；其余美术细节仍独立审查，最新代码和视频尚未推送。
+
+最新三分钟审阅片先展示效果，加入上下左右光照和分段进度 overlay；复用 jibijibi-game 当前像素字体，标题与正文分级。可编辑剪辑示例见 [视频制作入口](examples/video/README.md)。
+
+讲解重点：[逐帧输出通过，衣物为什么仍像平面](docs/topics/clothing-normals.md)，记录银饰少女精度对照、重绘与实际受光检查。
 
 ## 输入与产物
 

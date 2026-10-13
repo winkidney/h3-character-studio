@@ -1,0 +1,10 @@
+{
+  "font": "Z Labs Pixel 12px Simplified Chinese",
+  "source_project": "jibijibi-game",
+  "source_path": "game/assets/fonts/playable/zlabs-pixel-12px-m-cn.ttf",
+  "active_theme": "game/assets/gui/amber/playable.theme.tres",
+  "source_release": "Build_20260519",
+  "license": "SIL OFL 1.1",
+  "font_sha256": "c4bf6069b8e5e31dc42c81f310afbc322c2cbc843ceba6c871358f9f1aaae033",
+  "rendering": "native12px mask, integer nearest-neighbor scale; no outline-font fallback"
+}

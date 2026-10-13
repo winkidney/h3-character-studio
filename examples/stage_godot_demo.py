@@ -1,6 +1,7 @@
 """Adopt a verified bundle in a recorded temporary hd-2d-godot copy only."""
 import argparse
 import hashlib
+import math
 import json
 from pathlib import Path
 import shutil
@@ -11,10 +12,15 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("bundle", type=Path)
     p.add_argument("--project", required=True, type=Path)
+    p.add_argument("--stride-reference-speed", type=float, default=1.35)
     a = p.parse_args()
+    if not math.isfinite(a.stride_reference_speed) or a.stride_reference_speed <= 0:
+        raise ValueError("Stride reference speed must be finite and positive")
     project = a.project.resolve()
     if not (project / "demo-source.json").is_file() or (project / ".git").exists():
         raise ValueError("Require a recorded temporary copy with demo-source.json and no .git")
+    (project / "build").mkdir(exist_ok=True)
+    (project / "build/.gdignore").write_text("# Generated footage is not runtime texture input.\n")
     delivery.verify(a.bundle)
     definition = json.loads((a.bundle / "character/character.json").read_text())
     identifier = definition["id"]
@@ -31,9 +37,14 @@ def main():
         if old not in text:
             raise ValueError("Expected original protagonist path in " + name)
         originals[name] = text
+    if "animation_clock += delta" not in originals["scripts/pixel_actor.gd"]:
+        raise ValueError("Expected original animation clock before speed-aware adoption")
     if (project / color_root).exists() or (project / normal_root).exists():
         raise ValueError("Use a fresh temporary copy; do not overwrite existing character assets")
-    shutil.copytree(a.bundle / "character", project / color_root)
+    # Godot consumes PNG frames/atlases. Animated WebP previews stay in the
+    # source bundle; they are review aids and may not decode in its importer.
+    shutil.copytree(a.bundle / "character", project / color_root,
+                    ignore=shutil.ignore_patterns("preview.webp"))
     normal_definition = json.loads((a.bundle / "normals/manifest.json").read_text())
     # Keep editable source layers in the bundle. Godot imports runtime atlases
     # only, avoiding thousands of unused authoring textures in the game.
@@ -52,10 +63,15 @@ def main():
         row.pop("manifest", None)
     core.write_json(project / normal_root / "manifest.json", normal_definition)
     for name,(old,new) in replacements.items():
-        (project / name).write_text(originals[name].replace(old,new))
+        text = originals[name].replace(old,new)
+        if name == "scripts/pixel_actor.gd":
+            text = text.replace("animation_clock += delta", "animation_clock += delta * "
+                "Vector2(get_real_velocity().x,get_real_velocity().z).length() / " + str(a.stride_reference_speed))
+        (project / name).write_text(text)
     core.write_json(project / "h3-character-adoption.json", dict(character_id=identifier,
         bundle_manifest_sha256=core.digest(a.bundle / "SHA256SUMS.json"),
         temporary_copy=True, modified_scripts=list(replacements),
+        stride_reference_speed=a.stride_reference_speed,
         original_script_sha256={name:hashlib.sha256(text.encode()).hexdigest() for name,text in originals.items()}))
     print("Staged", identifier, "in recorded temporary project", project)
 

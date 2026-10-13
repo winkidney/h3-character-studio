@@ -1,6 +1,6 @@
 {
   "date": "2026-10-13",
-  "status": "four_direction_gpu_materials_verified_recording_raw_video",
+  "status": "clothing_normals_revision_required",
   "character_revision": "right-v2-user-selected",
   "cpu_source_tests": {
     "passed": 17
@@ -58,13 +58,22 @@
         "seed": 442,
         "submission_attempts": 1,
         "job_directory": "runs/up-002",
-        "visual_review": "all_56_frames_rear_facing_selected_27"
+        "visual_review": "user_rejected_non_natural_reciprocal_feet"
+      },
+      "up_gait_revision": {
+        "job_directory": "runs/up-003",
+        "seed": 443,
+        "status": "generated_and_selected_27",
+        "prompt_id": "c0feeb4d-46c8-4aa6-9857-a81427223d20",
+        "submission_attempts": 1,
+        "visual_review": "agent_checked_reciprocal_feet_user_pending",
+        "cycle_frames": 27
       }
     }
   },
   "normals_for_new_character": {
     "status": "108_frames_paired_verified",
-    "visual_approval": "agent_reviewed_preview_user_final_review_pending",
+    "visual_approval": "user_reported_weak_clothing_dynamic_lighting_revision_required",
     "method": "authored_geometry_bidirectional_transport_pose_specific_boot_corrections",
     "gpu_material_capture": {
       "passed": true,
@@ -76,7 +85,9 @@
       ],
       "frames": 648,
       "loops_per_direction": 3,
-      "mode": "minimized_no_focus_offscreen_SubViewport"
+      "mode": "minimized_no_focus_offscreen_SubViewport",
+      "rear_revision": "up-002",
+      "historical_evidence": true
     },
     "metal_toggle": {
       "passed": true,
@@ -86,16 +97,18 @@
         "left": 2130,
         "right": 1166
       }
-    }
+    },
+    "up003_pairing_verified": true,
+    "up003_gpu": "new independent night roam captured; right-side lighting study captured; full revised material validation pending"
   },
   "godot_adoption": {
     "status": "temporary_demo_imported_gpu_verified",
     "original_project_modified": false
   },
   "video": {
-    "status": "closeup_dusk_night_rerecording",
+    "status": "diagnostic_light_study_completed_clothing_revision_required",
     "copy": "docs/video-script-3min.md",
-    "user_preference": "three_minute_technical_demo",
+    "user_preference": "independent night medium roam10s and cold/warm orbit3x12s",
     "raw_physical_route": {
       "passed": true,
       "native_size": [
@@ -127,12 +140,42 @@
       ],
       "fov": 30,
       "lamp_holds_seconds": 10,
-      "status": "rendering"
+      "status": "superseded_historical_dusk_night"
+    },
+    "slow_walk_clock": "actual horizontal speed / reviewed stride reference 1.35 m/s",
+    "three_minute_edit": "draft sources prepared; final material footage pending clothing normal revision",
+    "shots": {
+      "roam": {
+        "duration": 10,
+        "period": "night",
+        "independent_process": true,
+        "status": "recorded_10s"
+      },
+      "orbit": {
+        "duration": 36,
+        "stages": [
+          "cold-only",
+          "warm-only",
+          "mixed"
+        ],
+        "stage_seconds": 12,
+        "period": "night",
+        "independent_process": true,
+        "position": "fixed right side walking in place",
+        "path": "front vertical ellipse",
+        "single_light_energy": 3.5,
+        "mixed_light_energy_each": 1.75,
+        "status": "diagnostic_capture_completed_not_final_material_approval"
+      }
     }
   },
   "publication": {
-    "status": "destination_confirmed_preparing",
-    "repository": "winkidney/h3-character-studio"
+    "status": "public",
+    "repository": "winkidney/h3-character-studio",
+    "url": "https://github.com/winkidney/h3-character-studio",
+    "initial_commit": "fa8f7cc",
+    "ci_run_id": 38357176966,
+    "ci_conclusion": "success"
   },
   "gpu_environment": {
     "status": "installed",
@@ -154,7 +197,7 @@
     "graph_nodes": 14,
     "ui_graph_links": 21,
     "schema_problems": [],
-    "queue_empty": false,
+    "queue_empty": true,
     "gpu_submitted": true
   },
   "implementation_files": {
@@ -199,5 +242,566 @@
     "make_test": "failed_existing_missing_document_evidence_links",
     "source_worktree": "clean",
     "isolated_editor_import": "passed"
+  },
+  "clothing_normal_diagnosis": {
+    "document": "docs/clothing-normal-diagnosis.md",
+    "scope": "six right keyframes fixed screen ROI",
+    "near_flat_percent": {
+      "red": [
+        1.36,
+        1.98
+      ],
+      "jade": [
+        10.21,
+        16.61
+      ]
+    },
+    "normal_interpolation": "shape parameters currently not interpolated",
+    "next_action": "right direction27 frames semantic clothing volumes and local corrections, then all directions"
+  },
+  "local_volume_v7": {
+    "frame_count": 108,
+    "source_colors_unchanged": true,
+    "metal_masks_unchanged": true,
+    "global_normal_boost": false,
+    "temporal_checks_passed": true,
+    "gpu": {
+      "adapter": "NVIDIA GeForce RTX 4070 SUPER",
+      "renderer": "Forward+",
+      "color_and_clay_frames": 648,
+      "frame_bindings": 108,
+      "normal_toggle_passed": true,
+      "report": ".local/hd2d-demo/build/ancient-canal/local-volumes-v7-normal-render/normal-render-report.json"
+    },
+    "media": "output/local-volume-v7/validation.json",
+    "artistic_approval": "pending"
+  },
+  "silver_feedback": {
+    "renderer": "native GGX",
+    "waist_roughness": 0.18,
+    "other_silver_roughness": 0.12,
+    "metallic": 0.95,
+    "waist_linear_reflectance": [
+      0.8,
+      0.82,
+      0.85
+    ],
+    "waist_reflectance_mix": 0.8,
+    "source_colors_changed": false,
+    "shader_waist_albedo_changed": true,
+    "emission": false,
+    "phase_seconds": 12,
+    "lower_arc_seconds": 6,
+    "overhead_arc_seconds": 6,
+    "maximum_relative_light_height": 3,
+    "light_single_energy": 1.8,
+    "light_mixed_each_energy": 0.9,
+    "artistic_approval": "pending"
+  },
+  "latest_wheel_validation": {
+    "outside_project": true,
+    "installed_module_loading_verified": true,
+    "unit_tests": 22,
+    "passed": true,
+    "notes": "build used vendored packaging and wheel; GPU dependencies unchanged"
+  },
+  "current_revision": {
+    "name": "owned-surfaces-v8",
+    "animation_regenerated": false,
+    "source_and_outside_installed_tests_passed": 32,
+    "user_review": {
+      "status": "user-approved",
+      "scope": [
+        "remove nose normal block",
+        "remove chin-adjacent sudden external block"
+      ],
+      "evidence": "output/clean-frame-review-v8/warm-gpu-face-before-after.png",
+      "evidence_sha256": "8ec2dbc3a42a3dd29aab8981666eab256bd82ad6677e87920f6fd6c9dc488a9e",
+      "user_response": "新版已消除，继续采用",
+      "animation_regenerated": false,
+      "other_artistic_review": "pending; no implied approval of all back-walk or every detail"
+    },
+    "default_delivery": "delivery.jade-traveler.yaml",
+    "video_movies": [
+      {
+        "path": "output/clean-frame-review-v8/light-orbit-36s-rgb-lossless.mkv",
+        "frames": 1080,
+        "duration": 36,
+        "full_decode": true,
+        "sha256": "a51c155e28a49fe2706d658f47e7d2b9b1334d90348e92f8c267eada79ec1b09",
+        "pixel_format": "gbrp"
+      },
+      {
+        "path": "output/clean-frame-review-v8/light-orbit-36s-review.mp4",
+        "frames": 1080,
+        "duration": 36,
+        "full_decode": true,
+        "sha256": "0d7b68ec21732e505ec5182e443f6e1003cbfa7face139af7e69850c0a822e0b",
+        "pixel_format": "yuv420p"
+      },
+      {
+        "path": "output/clean-frame-review-v8/night-roam-10s-rgb-lossless.mkv",
+        "frames": 300,
+        "duration": 10,
+        "full_decode": true,
+        "sha256": "79d0bf577bd2b506ac066a218f2fb9251525f0641f52014735bcd10c3fec46ae",
+        "pixel_format": "gbrp",
+        "independent_shot": true
+      },
+      {
+        "path": "output/clean-frame-review-v8/night-roam-10s-review.mp4",
+        "frames": 300,
+        "duration": 10,
+        "full_decode": true,
+        "sha256": "4072c982685307bc5dfc09b93efd667ce2adc3441812320d3a1573a78204eda4",
+        "pixel_format": "yuv420p",
+        "independent_shot": true
+      }
+    ],
+    "GPU_frames": 648,
+    "GPU_bindings_checked": 108,
+    "original_rectangle_gate": {
+      "passed": false,
+      "failures": [
+        "normal toggle produces insufficient actual pixel difference left",
+        "normal toggle produces insufficient actual pixel difference right"
+      ],
+      "normal_comparisons": [
+        {
+          "changed_pixels": 83526,
+          "direction": "down",
+          "frame": 18.0,
+          "mean_absolute_RGB": 0.00730676338811649,
+          "sample_pixels": 755300
+        },
+        {
+          "changed_pixels": 99668,
+          "direction": "up",
+          "frame": 6.0,
+          "mean_absolute_RGB": 0.00861275868840278,
+          "sample_pixels": 755300
+        },
+        {
+          "changed_pixels": 75245,
+          "direction": "left",
+          "frame": 11.0,
+          "mean_absolute_RGB": 0.00580848679762442,
+          "sample_pixels": 755300
+        },
+        {
+          "changed_pixels": 77972,
+          "direction": "right",
+          "frame": 11.0,
+          "mean_absolute_RGB": 0.00578942498458776,
+          "sample_pixels": 755300
+        }
+      ]
+    },
+    "foreground_gate": {
+      "method": "native source alpha projected by actual Sprite3D triangle corners; exclude transparent canvas and background",
+      "original_thresholds_unchanged": {
+        "changed_pixels": 500,
+        "mean_absolute_RGB": 0.006
+      },
+      "directions": [
+        {
+          "direction": "down",
+          "frame": 18,
+          "changed_pixels": 81162,
+          "sample_pixels": 144775,
+          "mean_absolute_RGB": 0.036651626425047656,
+          "passed": true,
+          "alpha_source_sha256": "6c00f31cbe9e47a92431e891ba2d188c8fcea08a8d4ee961a0c84394a3d03ecc"
+        },
+        {
+          "direction": "up",
+          "frame": 6,
+          "changed_pixels": 96786,
+          "sample_pixels": 163539,
+          "mean_absolute_RGB": 0.038118300577659976,
+          "passed": true,
+          "alpha_source_sha256": "0d842787f01b0cbf820093079aea7c107c7b892c1f1b618b81d379dce6e4071e"
+        },
+        {
+          "direction": "left",
+          "frame": 11,
+          "changed_pixels": 73426,
+          "sample_pixels": 130563,
+          "mean_absolute_RGB": 0.03274164241648499,
+          "passed": true,
+          "alpha_source_sha256": "2cfcaeaadcbbd7ed808c6aa1c77d674c8f0b35632ce3b91f15eb26477b0689e8"
+        },
+        {
+          "direction": "right",
+          "frame": 11,
+          "changed_pixels": 75853,
+          "sample_pixels": 132908,
+          "mean_absolute_RGB": 0.03197801968672222,
+          "passed": true,
+          "alpha_source_sha256": "530fe5f1fb67f9bc1d358a1a862641fe5bd8f9db11262b514b0c44a91c548a26"
+        }
+      ],
+      "passed": true,
+      "old_full_rectangle_gate": "failed left/right; retained separately, not overwritten",
+      "adapter": "NVIDIA GeForce RTX 4070 SUPER",
+      "renderer": "forward_plus"
+    },
+    "source_master_RGB_max_error": 0,
+    "local_unpushed": true,
+    "original_game_modified": false,
+    "technical_cut": {
+      "duration": 180,
+      "frames": 5400,
+      "size": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "full_decode": true,
+      "sha256": "778c915da553be2c33a2ad7195714c86d9a65e3da810d8d74a809cdc0065a598",
+      "new_topic": "foreground-and-material-ownership",
+      "gameplay_source": "RGB lossless master",
+      "user_approved_issue_scope": [
+        "nose normal block",
+        "chin-adjacent external block"
+      ],
+      "copy_review": "pending",
+      "user_confirmed_repair_label": true
+    },
+    "remaining_review": "back-walk/artistic details independent; retain per-frame fallback and base-plane reports"
+  },
+  "video_edit_revision": {
+    "revision": "approved-orbit-original-palette-progress-v18",
+    "validation": {
+      "revision": "approved-orbit-original-palette-progress-v18",
+      "size": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "duration": 180,
+      "frames": 5400,
+      "movies": [
+        {
+          "path": "technical-demo-3min-rgb-lossless.mkv",
+          "duration": 180,
+          "frames": 5400,
+          "full_decode": true,
+          "sha256": "19352084c90170cf97181357cc7731bdab1ddb33bab6ecf6d959a8e9a4c31f0a"
+        },
+        {
+          "path": "technical-demo-3min-review.mp4",
+          "duration": 180,
+          "frames": 5400,
+          "full_decode": true,
+          "sha256": "60942c8abadc10f6c5be66e0774ff80c416297ea54f813edebb54b7736f3a4a1"
+        },
+        {
+          "path": "technical-demo-3min-with-bgm.mp4",
+          "duration": 180,
+          "frames": 5400,
+          "full_decode": true,
+          "sha256": "261954bdf5a993a540d5c735ab48675c9ab71dc865dc2d4ab33a491495627483"
+        }
+      ],
+      "orbit_replacement_seconds": [
+        34,
+        70
+      ],
+      "orbit_user_approved": true,
+      "orbit_parameters": {
+        "ambient": 0.0,
+        "auto_cycle": false,
+        "color": "#ffffff",
+        "direction": 3.0,
+        "direction_seconds": 6.0,
+        "energy": 2.65,
+        "frame": 11.0,
+        "front_offset": 0.8,
+        "horizontal_extent": 1.7,
+        "normal_strength": 0.8,
+        "normals_enabled": true,
+        "paused": true,
+        "playback_scale": 1.0,
+        "range": 7.6,
+        "silver_enabled": true,
+        "vertical_extent": 1.6
+      },
+      "orbit_mixed_energy_each": 1.325,
+      "orbit_normals_sha256": "23510b5dfbd20358d562f1c802d0adbcf1ff19f266a73e4f9e61408202056279",
+      "orbit_metal_sha256": "00da00715d53b56c3b6cf4fedf48cea3f950165fc0ae48f79f534e8d6d7e64bb",
+      "source_main_body_rgb_max_error": 0,
+      "progress": {
+        "type": "mint gold gray chapter boxes with short titles inside",
+        "overlay_rect": [
+          0,
+          988,
+          1920,
+          92
+        ],
+        "track_rect": [
+          48,
+          1026,
+          1824,
+          52
+        ],
+        "segments": 13,
+        "current_part_title_above": false,
+        "labels_inside_segments": true,
+        "explanation_above": true,
+        "palette": {
+          "past": "#a6d3b8",
+          "current": "#e7ba72",
+          "future": "#314047"
+        },
+        "label_font_size": 24,
+        "minimum_label_padding": 24,
+        "segment_sizes": "minimum text width plus duration-weighted free space"
+      },
+      "short_labels": [
+        "漫游",
+        "四向",
+        "环绕",
+        "设计",
+        "母版",
+        "环境",
+        "H3",
+        "背面",
+        "抠图",
+        "法线",
+        "体积",
+        "修复",
+        "片尾"
+      ],
+      "segment_outlines_and_timing_checked": true,
+      "original_mint_gold_gray_palette": true,
+      "explanation_above_progress": true,
+      "bgm_audio_bitstream_identical": true,
+      "final_video_bitstream_identical_to_silent_proxy": true,
+      "original_game_modified": false,
+      "copy_review": "pending"
+    },
+    "timeline": [
+      {
+        "id": "roam",
+        "title": "夜晚漫游",
+        "frames": 300,
+        "source": "来源：Godot Forward+ / 夜晚漫游工作流",
+        "short_title": "漫游",
+        "description": "夜景漫游，观察行走与环境",
+        "start_frame": 0,
+        "end_frame": 300,
+        "start_seconds": 0.0,
+        "end_seconds": 10.0
+      },
+      {
+        "id": "cardinal",
+        "title": "四向光照",
+        "frames": 720,
+        "source": "来源：Godot Forward+ / 已保存的四向光照参数",
+        "short_title": "四向",
+        "description": "原色与灰材质对照",
+        "start_frame": 300,
+        "end_frame": 1020,
+        "start_seconds": 10.0,
+        "end_seconds": 34.0
+      },
+      {
+        "id": "orbit",
+        "title": "冷暖环绕光",
+        "frames": 1080,
+        "source": "来源：Godot Forward+ / 冷暖环绕光工作流",
+        "short_title": "环绕",
+        "description": "低位扫光，再经头顶返回",
+        "start_frame": 1020,
+        "end_frame": 2100,
+        "start_seconds": 34.0,
+        "end_seconds": 70.0
+      },
+      {
+        "id": "design",
+        "title": "角色设计",
+        "frames": 360,
+        "short_title": "设计",
+        "description": "人物设定与概念选稿",
+        "start_frame": 2100,
+        "end_frame": 2460,
+        "start_seconds": 70.0,
+        "end_seconds": 82.0
+      },
+      {
+        "id": "masters",
+        "title": "四方向母版",
+        "frames": 360,
+        "short_title": "母版",
+        "description": "各方向独立生成参考图",
+        "start_frame": 2460,
+        "end_frame": 2820,
+        "start_seconds": 82.0,
+        "end_seconds": 94.0
+      },
+      {
+        "id": "install",
+        "title": "安装与模型",
+        "frames": 420,
+        "short_title": "环境",
+        "description": "实验环境与依赖，安装参考项目文档",
+        "start_frame": 2820,
+        "end_frame": 3240,
+        "start_seconds": 94.0,
+        "end_seconds": 108.0
+      },
+      {
+        "id": "workflow",
+        "title": "H3 动画生成",
+        "frames": 420,
+        "short_title": "H3",
+        "description": "母版驱动动画，保留全部原帧",
+        "start_frame": 3240,
+        "end_frame": 3660,
+        "start_seconds": 108.0,
+        "end_seconds": 122.0
+      },
+      {
+        "id": "failure",
+        "title": "背面步态修订",
+        "frames": 240,
+        "subtitle": "踩坑记录",
+        "short_title": "背面",
+        "description": "踩坑：背向条件与双脚交替",
+        "start_frame": 3660,
+        "end_frame": 3900,
+        "start_seconds": 122.0,
+        "end_seconds": 130.0
+      },
+      {
+        "id": "extract",
+        "title": "抠图与选帧",
+        "frames": 360,
+        "subtitle": "踩坑记录",
+        "short_title": "抠图",
+        "description": "踩坑：量化前去除背景残留",
+        "start_frame": 3900,
+        "end_frame": 4260,
+        "start_seconds": 130.0,
+        "end_seconds": 142.0
+      },
+      {
+        "id": "normals",
+        "title": "法线与银饰蒙版",
+        "frames": 420,
+        "subtitle": "踩坑记录",
+        "short_title": "法线",
+        "description": "踩坑：表面朝向与金属范围",
+        "start_frame": 4260,
+        "end_frame": 4680,
+        "start_seconds": 142.0,
+        "end_seconds": 156.0
+      },
+      {
+        "id": "topic",
+        "title": "局部形体与体积",
+        "frames": 300,
+        "subtitle": "踩坑记录",
+        "short_title": "体积",
+        "description": "踩坑：加强局部，减弱整块鼓包",
+        "start_frame": 4680,
+        "end_frame": 4980,
+        "start_seconds": 156.0,
+        "end_seconds": 166.0
+      },
+      {
+        "id": "ownership",
+        "title": "外部块修复",
+        "frames": 300,
+        "subtitle": "踩坑记录",
+        "short_title": "修复",
+        "description": "踩坑：鼻部与银饰逐帧归属",
+        "start_frame": 4980,
+        "end_frame": 5280,
+        "start_seconds": 166.0,
+        "end_seconds": 176.0
+      },
+      {
+        "id": "ending",
+        "title": "制作记录与仓库",
+        "frames": 120,
+        "subtitle": "踩坑记录",
+        "short_title": "片尾",
+        "description": "制作记录与独立项目",
+        "start_frame": 5280,
+        "end_frame": 5400,
+        "start_seconds": 176.0,
+        "end_seconds": 180.0
+      }
+    ],
+    "previous_revision": "sources-pitfalls-and-pixel-outro-v14",
+    "previous_validation_retained": "output/video-technical-v14-content-review/validation.json",
+    "original_H3_and_material_revision": "owned-surfaces-v8 retained",
+    "local_unpushed": true
+  },
+  "interactive_lighting_control": {
+    "actual_renderer": "forward_plus",
+    "adapter": "NVIDIA GeForce RTX 4070 SUPER",
+    "saved_parameters": {
+      "energy": 2.65,
+      "ambient": 0.0,
+      "normal_strength": 0.8,
+      "normals_enabled": true,
+      "silver_enabled": true,
+      "color": "#ffffff",
+      "horizontal_extent": 1.7,
+      "vertical_extent": 1.6,
+      "front_offset": 0.8,
+      "range": 7.6,
+      "playback_scale": 0.46875,
+      "direction_seconds": 6.0,
+      "direction": 3,
+      "auto_cycle": false,
+      "paused": true,
+      "frame": 11
+    },
+    "saved_snapshot_sha256_verified": true,
+    "saved_at": "2026-10-13T21:04:58+0800",
+    "tests_passed": 4,
+    "fixture_capture_1280_retained_rejected": true,
+    "native1080_capture": "output/cardinal-user-selected-v12",
+    "source_art_revision": "owned-surfaces-v8",
+    "user_choice_saved": true,
+    "recording_override": {
+      "playback_scale": 1.0
+    }
+  },
+  "video_audio_revision": {
+    "revision": "original-bgm-stream-preserved-v18",
+    "visual_revision": "approved-orbit-original-palette-progress-v18",
+    "file": "technical-demo-3min-with-bgm.mp4",
+    "duration": 180,
+    "size": [
+      1920,
+      1080
+    ],
+    "fps": 30,
+    "video_frames": 5400,
+    "video_bitstream_identical": true,
+    "full_video_audio_decode": true,
+    "audio": {
+      "title": "夜色河灯",
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration": 180,
+      "measured_integrated_lufs": -18.01,
+      "measured_true_peak_dbtp": -2.58,
+      "target_lufs": -18,
+      "peak_limit_dbtp": -1.5,
+      "fade_in_seconds": 0.6,
+      "fade_out_seconds": 4,
+      "silence_padding_seconds": 0.04,
+      "user_provided": true
+    },
+    "sha256": "261954bdf5a993a540d5c735ab48675c9ab71dc865dc2d4ab33a491495627483",
+    "video_bitstream_identical_to_silent_proxy": true,
+    "bgm_audio_bitstream_identical_to_v15": true
   }
 }

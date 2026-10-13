@@ -1,0 +1,20 @@
+schema_version: 1
+id: jade-traveler
+pixel_size: 0.009
+directions:
+  down:
+    animation: runs/down-clean-selected-v8g/pixel-256
+    normals: runs/jade-owned-surfaces-v8b/down
+    idle_frame: 18
+  up:
+    animation: runs/up-clean-selected-v8h/pixel-256
+    normals: runs/jade-owned-surfaces-v8b/up
+    idle_frame: 6
+  left:
+    animation: runs/left-clean-selected-v8g/pixel-256
+    normals: runs/jade-owned-surfaces-v8b/left
+    idle_frame: 11
+  right:
+    animation: runs/right-clean-selected-v8g/pixel-256
+    normals: runs/jade-owned-surfaces-v8b/right
+    idle_frame: 11

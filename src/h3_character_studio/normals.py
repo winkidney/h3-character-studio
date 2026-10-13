@@ -15,12 +15,15 @@ from .recipe import identifier
 def warp(shapes, flow):
     result = copy.deepcopy(shapes)
     for shape in result:
+        if "pixel_region" in shape:
+            raise ValueError("Exact pixel regions require explicit per-frame geometry edits")
         if "ellipse" in shape:
             shape["ellipse"][:2] = (np.asarray(shape["ellipse"][:2]) + geometry.sample_flow(flow, shape["ellipse"][:2])).tolist()
         if "points" in shape:
             shape["points"] = [(np.asarray(point) + geometry.sample_flow(flow, point)).tolist() for point in shape["points"]]
-        if "clip_polygon" in shape:
-            shape["clip_polygon"] = [(np.asarray(point) + geometry.sample_flow(flow, point)).tolist() for point in shape["clip_polygon"]]
+        for name in ("clip_polygon", "surface_region"):
+            if name in shape:
+                shape[name] = [(np.asarray(point) + geometry.sample_flow(flow, point)).tolist() for point in shape[name]]
     return result
 
 
@@ -29,12 +32,28 @@ def interpolate(a, b, weight):
         raise ValueError("Key poses must share ordered shape IDs and kinds; use per-frame edits for topology changes")
     result = copy.deepcopy(a)
     for shape, other in zip(result, b):
-        for name in ("ellipse", "points", "clip_polygon"):
+        for name in ("ellipse", "points", "clip_polygon", "surface_region"):
+            if (name in shape) != (name in other):
+                raise ValueError("Corresponding shapes must share coordinate fields")
             if name in shape:
                 x, y = np.asarray(shape[name]), np.asarray(other[name])
                 if x.shape != y.shape:
                     raise ValueError("Corresponding shape coordinates must share a topology")
                 shape[name] = ((1 - weight) * x + weight * y).round(4).tolist()
+        defaults = dict(slope=.65 if shape["kind"] == "ellipsoid" else .72,
+                        yaw=0, coverage=1, normal=[0, 0, 1])
+        for name in ("radius", "slope", "yaw", "coverage", "normal"):
+            if name in shape or name in other:
+                x = np.asarray(shape.get(name, defaults.get(name)), dtype=float)
+                y = np.asarray(other.get(name, defaults.get(name)), dtype=float)
+                if x.shape != y.shape or not np.isfinite(x).all() or not np.isfinite(y).all():
+                    raise ValueError("Corresponding surface parameters must be finite and compatible")
+                value = (1 - weight) * x + weight * y
+                if name == "normal":
+                    if value.shape != (3,) or np.linalg.norm(value) < 1e-6:
+                        raise ValueError("Interpolated plane normal is undefined")
+                    value = geometry.unit(value)
+                shape[name] = value.round(6).tolist()
     return result
 
 
@@ -61,6 +80,9 @@ def transport(keys, forward, backward):
 
 
 def polygon(points):
+    coordinates = np.asarray(points, dtype=float)
+    if coordinates.ndim != 2 or coordinates.shape[1] != 2 or len(coordinates) < 3 or not np.isfinite(coordinates).all():
+        raise ValueError("A surface polygon needs at least three finite 2D points")
     canvas = Image.new("L", (256, 256))
     ImageDraw.Draw(canvas).polygon([tuple(p) for p in points], fill=255)
     return np.asarray(canvas) > 0
@@ -76,7 +98,7 @@ def render(color, shapes):
         raise ValueError("Use 1..254 uniquely named semantic shapes")
     for index, shape in enumerate(shapes, 1):
         identifier(shape["id"])
-        for name in ("ellipse", "points", "clip_polygon", "normal", "radius", "slope", "yaw", "coverage"):
+        for name in ("ellipse", "points", "clip_polygon", "surface_region", "normal", "radius", "slope", "yaw", "coverage"):
             if name in shape and not np.isfinite(np.asarray(shape[name], dtype=float)).all():
                 raise ValueError("Geometry coordinates and parameters must be finite")
         kind = shape["kind"]
@@ -85,6 +107,11 @@ def render(color, shapes):
                 raise ValueError("Ellipsoid radii must be positive")
             mask = geometry.ellipse_region(shape["ellipse"], shape.get("coverage", 1.0))
             normal = geometry.ellipsoid(shape["ellipse"], slope=shape.get("slope", 0.65), yaw=shape.get("yaw", 0))
+            # The semantic visible garment can extend beyond the analytic
+            # ellipse. Its explicit region gets the same surface field, rather
+            # than falling silently back to a screen-facing plane.
+            if "surface_region" in shape:
+                mask = polygon(shape["surface_region"])
         elif kind == "tube":
             if len(shape["points"]) < 2 or shape["radius"] <= 0:
                 raise ValueError("A tube needs two points and a positive radius")
@@ -98,6 +125,17 @@ def render(color, shapes):
             normal = np.broadcast_to(geometry.unit(vector), vectors.shape)
         else:
             raise ValueError("Geometry kind must be ellipsoid, tube or plane")
+        if "pixel_region" in shape:
+            # Fine material islands need exact per-frame coverage. A bounding
+            # ellipse must not turn adjacent embroidery or jade into metal.
+            points = np.asarray(shape["pixel_region"], dtype=float)
+            if (points.ndim != 2 or points.shape[1] != 2 or not len(points)
+                    or not np.isfinite(points).all() or np.any(points != np.rint(points))
+                    or np.any(points < 0) or np.any(points > 255)):
+                raise ValueError("Pixel regions need integer coordinates inside the256px canvas")
+            points = points.astype(int)
+            mask = np.zeros((256, 256), bool)
+            mask[points[:, 1], points[:, 0]] = True
         if "clip_polygon" in shape:
             mask &= polygon(shape["clip_polygon"])
         if shape.get("palette_colors"):
@@ -117,7 +155,7 @@ def encoded(normal, alpha):
     return pixels
 
 
-def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
+def build(animation, geometry_path, output, *, edits=None, painted_layers=None, material_annotations=None):
     animation, output = Path(animation), Path(output)
     check_bundle(animation)
     manifest = json.loads((animation / "animation.json").read_text())
@@ -132,7 +170,11 @@ def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
             raise ValueError("Keypose frame outside selected animation")
         render(colors[key], value)
     forward, backward = geometry.optical_flow(colors)
-    rigs = transport(keys, forward, backward)
+    # Explicit per-frame edits are authoritative, including topology changes
+    # such as a newly exposed fold or a different boot silhouette. They must
+    # not first pass through automatic keypose interpolation.
+    per_frame_source = Path(edits or painted_layers) if (edits or painted_layers) else None
+    rigs = [None] * len(colors) if per_frame_source else transport(keys, forward, backward)
     output.mkdir(parents=True, exist_ok=False)
     (output / "geometry.yaml").write_bytes(Path(geometry_path).read_bytes())
     np.savez_compressed(output / "motion.npz", forward=np.asarray(forward).astype(np.float16),
@@ -140,10 +182,14 @@ def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
     source_atlas = Image.open(core.contained(animation, manifest["atlas"])).convert("RGBA")
     normal_atlas = Image.new("RGBA", source_atlas.size, (128, 128, 255, 0))
     mask_atlas = Image.new("RGBA", source_atlas.size)
-    records, unlabelled, normals, masks = [], [], [], []
+    records, unlabelled, fallback, normals, masks = [], [], [], [], []
+    material_checks = []
     for index, (color, shapes, row) in enumerate(zip(colors, rigs, manifest["frames"])):
-        if edits:
-            shapes = json.loads((Path(edits) / f"{index:05d}/geometry.json").read_text())["shapes"]
+        if per_frame_source:
+            shapes = json.loads((per_frame_source / f"{index:05d}/geometry.json").read_text())["shapes"]
+        from . import materials
+        shapes, material_check = materials.constrain(shapes, color, row["sha256"], index, material_annotations)
+        material_checks.append(material_check)
         normal, labels, metal = render(color, shapes)
         edit_dir = output / "editable" / f"{index:05d}"
         edit_dir.mkdir(parents=True)
@@ -182,6 +228,8 @@ def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
         x, y, width, height = row["region"]
         normal_atlas.paste(Image.fromarray(pixels), (x, y)); mask_atlas.paste(Image.fromarray(mask), (x, y))
         unlabelled.append(int(((alpha > 0) & (labels == 0)).sum()))
+        fallback_labels = [i for i, shape in enumerate(shapes, 1) if shape.get("fallback", False)]
+        fallback.append(int(((alpha > 0) & np.isin(labels, fallback_labels)).sum()))
         records.append(dict(index=index, path=str(frame_path.relative_to(output)), sha256=core.digest(frame_path),
             mask_path=str(mask_path.relative_to(output)), mask_sha256=core.digest(mask_path),
             source_path=row["path"], source_sha256=row["sha256"], region=row["region"], duration_ms=row["duration_ms"]))
@@ -191,7 +239,7 @@ def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
         atlas_sha256=core.digest(output / "atlas.png"), mask_atlas_sha256=core.digest(output / "mask-atlas.png"),
         source_manifest_sha256=core.digest(animation / "animation.json"), frames=records,
         coordinates="X right, Y up, Z toward viewer; RGB=(normal+1)/2; linear vector data",
-        visual_approval="pending", unlabelled_pixels=unlabelled)
+        visual_approval="pending", unlabelled_pixels=unlabelled, fallback_pixels=fallback)
     core.write_json(output / "manifest.json", data)
     # Clay review keeps albedo entirely out of the lighting calculation.
     light = geometry.unit(np.array([-.6, .5, .8], np.float32))
@@ -215,7 +263,9 @@ def build(animation, geometry_path, output, *, edits=None, painted_layers=None):
         transitions.append(dict(source=i, target=next_i, loop_seam=next_i == 0,
             common_pixels=int(visible.sum()), p95_angle_degrees=float(np.percentile(angle[visible], 95)) if visible.any() else None))
     validation = verify(animation, output)
-    validation.update(unlabelled_pixels=unlabelled, geometry_coverage_complete=not any(unlabelled),
+    core.write_json(output / "material-ownership.json", dict(frames=material_checks, transported_materials_are_proposals=True))
+    validation.update(material_annotations_verified=True, unlabelled_pixels=unlabelled, fallback_pixels=fallback,
+                      geometry_coverage_complete=not any(unlabelled) and not any(fallback),
                       transitions=transitions, temporal_metrics_are_review_hints=True, visual_approval="pending")
     core.write_json(output / "validation.json", validation)
     return validation

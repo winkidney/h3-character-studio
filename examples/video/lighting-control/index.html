@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>青绿少女 · 光照调参台</title>
+<style>
+@font-face{font-family:pixel;src:url('/font.ttf')}*{box-sizing:border-box}body{margin:0;background:#0c151b;color:#e9e9dc;font-family:pixel,sans-serif;font-size:18px}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #415257;background:#1b2c31;color:inherit;padding:10px 14px;border-radius:2px}button:hover{background:#2a3f43}button:focus-visible,input:focus-visible{outline:2px solid #efc873;outline-offset:3px}button:disabled{opacity:.4;cursor:wait}header{padding:24px 32px;border-bottom:1px solid #34454b;display:flex;align-items:center;justify-content:space-between;gap:18px}h1{margin:0;font-size:30px;font-weight:normal}header p{color:#a4b5b9;font-size:16px;margin:10px 0 0}.badge{color:#9fd3be;font-size:16px;white-space:nowrap}main{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:28px;padding:26px 32px}.stage{min-width:0}.views{display:flex;justify-content:space-around;color:#a7b4b7;font-size:18px;padding:10px 0}.screen{position:relative;background:#080e13;aspect-ratio:16/9;overflow:hidden;border:1px solid #34454b}.screen img{width:100%;height:100%;object-fit:contain;display:block;image-rendering:pixelated}.screen .waiting{position:absolute;inset:0;display:grid;place-items:center;color:#c3c5b9}.under{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0;color:#a7b4b7;font-size:16px}.direction{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.direction button{flex:1;min-width:95px;color:var(--dir);border-bottom:3px solid var(--dir)}.direction button[aria-pressed=true]{background:#2b3a3e;box-shadow:inset 0 0 0 1px var(--dir)}.toggles{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0}.toggles label{display:flex;align-items:center;gap:8px;min-height:30px}input[type=checkbox]{width:18px;height:18px;accent-color:#efc873}aside{border-left:1px solid #34454b;padding-left:24px}h2{font-size:22px;font-weight:normal;margin:0 0 20px}.field{margin-bottom:20px}.field label{display:flex;justify-content:space-between;gap:12px;font-size:18px}.field output{color:#efc873;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#efc873;margin:10px 0 0;height:18px}.hint{font-size:14px;color:#95a9af;line-height:1.7;margin:4px 0 0}.divider{height:1px;background:#34454b;margin:22px 0}.actions{display:flex;gap:10px;flex-wrap:wrap}.save{background:#efc873;color:#10191d;border-color:#efc873;flex:1}.save:hover{background:#f4d99e}.status{font-size:16px;line-height:1.7;min-height:30px;color:#a9d4c0;margin:14px 0}.status.error{color:#ffa18e}.saved{font-size:14px;color:#a4b5b9;line-height:1.8;overflow-wrap:anywhere}details{margin:20px 0;border-top:1px solid #34454b;padding-top:16px}summary{cursor:pointer;color:#c4d0ce}.color-row{display:flex;align-items:center;gap:12px}input[type=color]{height:36px;width:54px;border:0;background:none}.frame{max-width:360px}footer{padding:0 32px 22px;color:#82969e;font-size:14px;line-height:1.8}@media(max-width:1050px){main{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid #34454b;padding:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}aside h2,aside .actions,aside .status,aside .saved,aside .divider{grid-column:1/-1}}@media(max-width:600px){header{padding:20px;align-items:start;flex-direction:column}h1{font-size:26px}main{padding:18px;gap:20px}aside{display:block}.direction button{min-width:calc(50% - 10px)}footer{padding:0 18px 20px}.views{font-size:16px}}
+</style>
+<header><div><h1>青绿少女 · 光照调参台</h1><p>比较四向受光，选择参数，保存后用于正式录像。</p></div><span class="badge" id="backend">Godot · 准备中</span></header>
+<main>
+<section class="stage" aria-label="实际 GPU 预览">
+  <div class="views"><span>原色 / 逐帧法线与银饰</span><span>灰材质 / 形体受光</span></div>
+  <div class="screen"><img id="preview" alt="同一姿态的原色和灰材质角色，使用当前灯光参数"><div id="waiting" class="waiting">正在启动实际 GPU 渲染…</div></div>
+  <div class="under"><span id="directionLabel">上方照射</span><span id="frameLabel">等待画面</span></div>
+  <div class="direction" aria-label="灯光方向">
+    <button type="button" data-direction="0" style="--dir:#f5c96b" aria-pressed="true">上方</button>
+    <button type="button" data-direction="1" style="--dir:#8cbfff" aria-pressed="false">下方</button>
+    <button type="button" data-direction="2" style="--dir:#73dfc5" aria-pressed="false">左侧</button>
+    <button type="button" data-direction="3" style="--dir:#ffa18e" aria-pressed="false">右侧</button>
+  </div>
+  <div class="toggles"><label><input type="checkbox" id="auto_cycle">自动切换四向</label><label><input type="checkbox" id="paused">固定动画帧</label><label><input type="checkbox" id="normals_enabled" checked>逐帧法线</label><label><input type="checkbox" id="silver_enabled" checked>银饰高光</label></div>
+  <div class="field frame" id="frameControl" hidden><label for="frame">固定帧 <output id="frameValue">11</output></label><input id="frame" type="range" min="0" max="26" step="1" value="11"></div>
+  <details><summary>光源位置与动画参数</summary><div id="advanced" style="margin-top:20px"></div><div class="color-row"><label for="color">灯光颜色</label><input type="color" id="color" value="#ffffff"><span id="colorValue">#ffffff</span></div><p class="hint">相机、色图和逐帧蒙版保持一致。固定帧和单向选择用于比较，正式录制仍按上、下、左、右连续走动。</p></details>
+</section>
+<aside aria-label="光照参数">
+<h2>受光与明暗</h2><div id="primary"></div>
+<div class="divider"></div>
+<div class="actions"><button type="button" class="save" id="save" disabled>保存并用于后续录像</button><button type="button" id="reset">恢复默认</button></div>
+<p class="status" id="status" aria-live="polite">等待当前参数的渲染画面。</p><div class="saved" id="saved">尚未保存。调参会实时预览，点击保存后才会成为后续录像参数。</div>
+</aside>
+</main>
+<footer>环境光是整体底光；点光强度控制移动光源。当前默认环境光为 0，点光为 0.7。这里显示的是实际 Godot 渲染。</footer>
+<script>
+const names=['上方','下方','左侧','右侧'],colors=['#f5c96b','#8cbfff','#73dfc5','#ffa18e'];
+const fields=[
+ ['energy','点光强度',0,4,.05,'primary','降低它可以减少直接受光后的过亮。'],
+ ['ambient','环境光',0,.5,.01,'primary','抬高整体暗部；为 0 时仅由点光照亮。'],
+ ['normal_strength','法线强度',0,2,.05,'primary','调节逐帧法线的受光起伏。'],
+ ['front_offset','光源离正面的距离',.3,4,.05,'advanced','单位米，越近亮度与方向梯度越明显。'],
+ ['horizontal_extent','左右移动幅度',.2,3,.05,'advanced','相对角色中心，单位米。'],
+ ['vertical_extent','上下移动幅度',.2,3,.05,'advanced','相对角色中心，单位米。'],
+ ['range','点光范围',3,12,.1,'advanced','单位米，影响点光衰减。'],
+ ['playback_scale','动画播放倍率',.1,1.5,.00625,'advanced','默认 0.46875，适合慢步观察。'],
+ ['direction_seconds','每个方向停留',2,12,.5,'advanced','单位秒，正式四向录像总长为这个值的四倍。']
+];
+for(const [id,label,min,max,step,section,hint] of fields){const div=document.createElement('div');div.className='field';div.innerHTML=`<label for="${id}">${label}<output id="${id}Value"></output></label><input id="${id}" type="range" min="${min}" max="${max}" step="${step}"><p class="hint">${hint}</p>`;document.getElementById(section).append(div)}
+let params,defaults,revision=-1,shownRevision=-2,shownSequence=-1,dirty=false,timer,pending=false,requestSerial=0,objectUrl;
+const $=id=>document.getElementById(id);function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error)}
+function updateUI(){for(const [id] of fields){$(id).value=params[id];$(id+'Value').value=Number(params[id]).toFixed(id==='playback_scale'?5:2).replace(/0+$/,'').replace(/\.$/,'')}for(const id of ['auto_cycle','paused','normals_enabled','silver_enabled'])$(id).checked=params[id];$('frame').value=params.frame;$('frameValue').value=params.frame;$('frameControl').hidden=!params.paused;$('color').value=params.color;$('colorValue').textContent=params.color;updateDirection(params.direction)}
+function updateDirection(i){$('directionLabel').textContent=names[i]+'照射';$('directionLabel').style.color=colors[i];document.querySelectorAll('[data-direction]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.direction===i)))}
+function updateSave(){ $('save').disabled=pending||dirty||shownRevision!==revision||shownSequence<0; }
+async function api(path,data){const r=await fetch(path,{method:data?'POST':'GET',headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});const v=await r.json();if(!r.ok)throw Error(v.error||'请求失败');return v}
+function changed(){dirty=true;updateSave();status('更新参数，等待实际渲染…');clearTimeout(timer);timer=setTimeout(send,120)}
+async function send(){if(pending){timer=setTimeout(send,80);return}pending=true;const serial=++requestSerial;const sent=JSON.stringify(params);updateSave();try{const v=await api('/api/preview',{params:JSON.parse(sent)});revision=v.revision;dirty=JSON.stringify(params)!==sent;if(dirty)timer=setTimeout(send,0)}catch(e){status(e.message,true)}finally{pending=false;updateSave()}}
+for(const [id] of fields)$(id).addEventListener('input',()=>{params[id]=+$(id).value;updateUI();changed()});
+for(const id of ['auto_cycle','paused','normals_enabled','silver_enabled'])$(id).addEventListener('change',()=>{params[id]=$(id).checked;updateUI();changed()});
+$('frame').addEventListener('input',()=>{params.frame=+$('frame').value;updateUI();changed()});$('color').addEventListener('input',()=>{params.color=$('color').value;updateUI();changed()});
+document.querySelectorAll('[data-direction]').forEach(b=>b.addEventListener('click',()=>{params.direction=+b.dataset.direction;params.auto_cycle=false;updateUI();changed()}));
+$('reset').addEventListener('click',()=>{params={...defaults};updateUI();changed()});
+function savedLabel(v){$('saved').textContent=`已保存 ${v.saved_at}。后续录像读取 selected.json，同时保留这次的截图。点光 ${v.params.energy} · 环境光 ${v.params.ambient} · 法线 ${v.params.normal_strength}`}
+$('save').addEventListener('click',async()=>{pending=true;updateSave();try{const v=await api('/api/save',{params,revision,sequence:shownSequence});savedLabel(v);status('已保存，后续录像将采用这组参数。')}catch(e){status(e.message,true)}finally{pending=false;updateSave()}});
+async function refresh(){try{const r=await fetch('/api/frame');if(r.ok){const blob=await r.blob();const url=URL.createObjectURL(blob);const img=new Image();img.src=url;await img.decode();const old=objectUrl;objectUrl=url;$('preview').src=url;if(old)URL.revokeObjectURL(old);shownRevision=+r.headers.get('X-Revision');shownSequence=+r.headers.get('X-Sequence');$('waiting').hidden=true;$('waiting').style.display='none';$('backend').textContent='Godot · '+r.headers.get('X-Renderer');$('frameLabel').textContent='动画帧 '+r.headers.get('X-Animation-Frame')+' / 26';if(shownRevision===revision&&!dirty&&!pending){updateDirection(+r.headers.get('X-Direction'));if($('status').textContent.startsWith('更新')||$('status').textContent.startsWith('等待'))status('当前参数已显示，可继续调节或保存。')}updateSave()}}catch(e){status('预览连接中断，请检查本地服务。',true)}setTimeout(refresh,160)}
+async function init(){try{const v=await api('/api/status');params={...v.current.params};defaults=v.defaults;revision=v.current.revision;updateUI();if(v.selected)savedLabel(v.selected);refresh()}catch(e){status(e.message,true)}}init();
+</script>
+</html>

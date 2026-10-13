@@ -19,8 +19,8 @@ directions:
     seed: 241
   up:
     master: prepared/up.png
-    prompt_file: prompts/up.txt
-    seed: 441
+    prompt_file: prompts/up-v3.txt
+    seed: 443
   left:
     master: prepared/left.png
     prompt_file: prompts/left.txt
@@ -31,7 +31,7 @@ directions:
     seed: 41
 design:
   user_selected: right-v2
-  user_confirmation: 用这一稿继续
+  user_confirmation: "\u7528\u8FD9\u4E00\u7A3F\u7EE7\u7EED"
   date: '2026-10-13'
   satchel_anatomy: right hip, strap from left shoulder
   hair: two high unbraided ponytails

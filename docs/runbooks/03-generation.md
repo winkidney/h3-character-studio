@@ -26,6 +26,8 @@ camera motion, zoom, cuts, captions, extra limbs or objects.
 
 背面首轮 `up-001` 失败：原提示词前段包含眼睛、脸型和胸前饰物，后段虽排除正面，模型仍把大多数中间帧生成正面。保留完整作业和联系图，禁止从少数背面引导帧拼成假动画。修订 `prompts/up-v2.txt` 只描述后脑、背披肩、后裙与背向步态，移除正面身份词；`character-up-v2.yaml` 使用新种子 442，并在 13、27、41 帧串联背面母版引导。额外引导可能造成停顿，生成后必须重新检查连续步态；提交成功不表示修订通过。实际最终结果另记制作状态。
 
+第二轮虽保持背向，用户指出双脚没有自然前后交替，拒绝该步态。第三轮 `up-003` 使用种子443、`up-v3.txt`，移除13与41帧重复姿态引导，仅保留27帧。提示词描述单腿支撑、另一腿抬跟和屈膝经过、前后脚交换，再检查实际帧中的动作。第三轮候选27帧包含一个完整周期；第二轮约14帧一轮与其他方向节奏不一致。方向正确与步态正确分别审查。
+
 ```sh
 h3-character prepare examples/jade-traveler/character.yaml --direction right --output runs/right-001
 h3-character run runs/right-001 --observe-seconds 30
@@ -63,3 +65,9 @@ h3-character select runs/right-001-extracted/pixel-256 --start 28 --stop 55 --ou
 ```
 
 颜色输出含全部帧、图集、每帧毫秒时长、原始帧索引、透明边界及摘要。技术通过之后仍需确认视觉；待机从平衡、不悬空、衣饰稳定的帧中单独选择。
+
+## 抠图必须在调色板映射前检查
+
+ToonOut 神经蒙版与前景 RGB 恢复不是正确性的证明。保留 `neural-soft-mask/` 原始结果，并查看 `foreground/*.quality.json`。均匀洋红背景先验验证后再参与 alpha 修正；非洋红背景不使用这条规则。共享角色调色板与 key 冲突会停止提取，不能牺牲真实服装颜色换取看似干净的轮廓。
+
+将 256 输出分别放在黑、白背景下逐帧放大检查发丝孔洞、脸颈空隙、手指、飘带和鞋边。最终颜色已经量化，“没有洋红色”无法证明原背景被移除。边缘恢复的 fallback 像素需要视觉复核；数值 gate 通过仍保留 `visual_approval: pending`。详见 [独立 topic](../topics/foreground-and-material-ownership.md)。

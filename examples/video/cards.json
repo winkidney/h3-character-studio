@@ -1,0 +1,247 @@
+{
+  "design": {
+    "asset_name": "01-design",
+    "title": "从人物设定到游戏角色",
+    "lines": [
+      "保留青绿行旅少女的服装结构，增加银饰，将单辫改为双马尾。",
+      "先选定角色设计，再扩展方向与动作。"
+    ],
+    "images": [
+      "examples/jade-traveler/concepts/right-v1.png",
+      "examples/jade-traveler/concepts/right-v2.png"
+    ],
+    "labels": [
+      "第一稿",
+      "用户选定的双马尾银饰修订"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "需要 GPT Image 或本地 Qwen 2.1 等生图模型",
+    "source": "来源：ImageGen 概念设计 / 用户交互选稿"
+  },
+  "masters": {
+    "asset_name": "02-masters",
+    "title": "四个方向，四份独立参考",
+    "lines": [
+      "皮包固定在解剖右胯，包带从左肩斜过身体。",
+      "768 × 768 画幅 · 实体高度 648 · 地面 720 · 动画不逐帧居中"
+    ],
+    "images": [
+      "examples/jade-traveler/prepared/down.png",
+      "examples/jade-traveler/prepared/up.png",
+      "examples/jade-traveler/prepared/left.png",
+      "examples/jade-traveler/prepared/right.png"
+    ],
+    "labels": [
+      "正面",
+      "背面",
+      "左向",
+      "右向"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "需要 GPT Image 或本地 Qwen 2.1 等生图模型",
+    "source": "来源：ImageGen 四向参考 / prepare 母版投影"
+  },
+  "install": {
+    "asset_name": "03-install",
+    "title": "安装、模型与独立 ComfyUI",
+    "lines": [
+      "实验环境：Linux x86_64 · Python 3.12 · CUDA 13.0",
+      "实验显卡：NVIDIA GeForce RTX 4070 SUPER",
+      "运行依赖：Git · FFmpeg · PyTorch CUDA · 独立 ComfyUI",
+      "Python 依赖：NumPy · Pillow · PyYAML · OpenCV",
+      "模型与抠图：H3 · ToonOut / BiRefNet，权重约 52 GB",
+      "安装依赖：参考项目文档",
+      "https://github.com/winkidney/h3-character-studio/blob/main/docs/runbooks/01-install.md"
+    ],
+    "images": [],
+    "labels": [],
+    "footer": "项目文档：docs/runbooks/01-install.md",
+    "source": "来源：项目安装 runbook / 固定依赖与模型锁"
+  },
+  "workflow": {
+    "asset_name": "04-workflow",
+    "title": "H3 工作流与实际参数",
+    "lines": [
+      "方向母版 → magenta 合成 → H3 图像条件与首尾帧",
+      "第三轮背向修订仅保留第 27 帧引导，重新检查双脚交替。",
+      "56 帧 · 24 FPS · 768 × 768 · 40 步",
+      "simple scheduler · res_multistep sampler",
+      "采样 → tiled VAE 解码 → 保存全部原始帧",
+      "prepare 冻结输入与 API / UI 图；run 提交一次；resume 查询原作业。",
+      "生成成功不等于方向、服饰、步态和循环已通过视觉审查。"
+    ],
+    "images": [],
+    "labels": [],
+    "footer": "由本次实际 API 图整理的节点关系；完整可导入工作流由 prepare 输出。",
+    "source": "来源：ComfyUI / H3 动画工作流"
+  },
+  "failure": {
+    "asset_name": "05-failure",
+    "title": "背面失败，保留结果后修订",
+    "lines": [
+      "失败环节：背面动画生成，首轮转正，后续候选双脚交替不自然。",
+      "纠正环节：母版与 H3 条件，改为背向描述和引导，再检查步态。"
+    ],
+    "images": [
+      "runs/up-001-review/contact.png",
+      "runs/up-003-review/stride-contact.png"
+    ],
+    "labels": [
+      "首轮：方向失败",
+      "第三轮：方向与前后脚交替分别审查"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：ComfyUI / H3 背向条件与步态修订"
+  },
+  "extract": {
+    "asset_name": "06-extract",
+    "title": "ToonOut 与原生 256 动画",
+    "lines": [
+      "失败环节：前景提取，背景杂色被量化为棕黑色，最终 PNG 检查假通过。",
+      "纠正环节：量化前抠图，恢复前景 RGB，检查封闭区域中的背景残留。",
+      "ToonOut：1024 输入 · float32 · batch = 1，保留 16 位软 Alpha。",
+      "共享 96 色板 · 四方向脚底锚点 [128, 240]。",
+      "连续原帧 28 至 54：27 帧、1125 毫秒，不跳帧、不插帧。",
+      "高分辨率原帧、软蒙版、前景颜色和透明帧分别保留。"
+    ],
+    "images": [],
+    "labels": [],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：ToonOut / BiRefNet 抠图 / 原生 256 提取"
+  },
+  "animation": {
+    "asset_name": "07-animation",
+    "title": "四方向动画的完整帧与来源",
+    "lines": [
+      "失败环节：背面 H3 候选，方向和双脚交替未通过审查。",
+      "纠正环节：独立重做背向候选，四方向统一时序与色板。"
+    ],
+    "images": [
+      "output/jade-traveler-owned-surfaces-v8/character/down/frames/00011.png",
+      "output/jade-traveler-owned-surfaces-v8/character/up/frames/00011.png",
+      "output/jade-traveler-owned-surfaces-v8/character/left/frames/00011.png",
+      "output/jade-traveler-owned-surfaces-v8/character/right/frames/00011.png"
+    ],
+    "labels": [
+      "正面 · 27 帧",
+      "背面 · 27 帧",
+      "左向 · 27 帧",
+      "右向 · 27 帧"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：H3 原动画 / ToonOut 提取与连续选帧"
+  },
+  "normals": {
+    "asset_name": "08-normals",
+    "title": "形体标注、运输与逐帧修正",
+    "lines": [
+      "失败环节：法线绘制，108 帧配对通过，但衣褶与发束受光仍不足。",
+      "纠正环节：局部形体标注，按可见表面重绘，再检查动态光照。",
+      "头发、披肩、手臂、裙褶、包和鞋子分别标注解析几何。",
+      "逐帧限制可见表面；靴子交叉步另作修正。",
+      "RGB 用于运动与材质线索，布纹亮度不直接转换为高度。",
+      "法线、标签、几何和独立向量层均可编辑。"
+    ],
+    "images": [],
+    "labels": [],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：几何法线工作流 / 光流运输与逐帧修正"
+  },
+  "materials": {
+    "asset_name": "09-materials",
+    "title": "同一姿态的颜色、法线与金属蒙版",
+    "lines": [
+      "失败环节：金属蒙版，自动银饰区域曾误覆盖皮肤等非金属表面。",
+      "纠正环节：逐帧归属标注，限定银饰像素，同帧绑定颜色、法线和蒙版。"
+    ],
+    "images": [
+      "output/jade-traveler-owned-surfaces-v8/character/right/frames/00011.png",
+      "output/jade-traveler-owned-surfaces-v8/normals/right/frames/00011.png",
+      "output/jade-traveler-owned-surfaces-v8/normals/right/masks/00011.png"
+    ],
+    "labels": [
+      "颜色 / 基础外观",
+      "法线 / 表面朝向",
+      "金属蒙版 / 材质范围"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：H3 + ToonOut 颜色 / 几何法线 / 逐帧金属标注",
+    "image_notes": [
+      [
+        "用途：服装、肤色与纹理",
+        "来源：H3 → ToonOut",
+        "母版：ImageGen 生图"
+      ],
+      [
+        "用途：计算动态明暗与体积",
+        "来源：几何重绘 + 光流运输",
+        "辅助参考：ImageGen 灰材质"
+      ],
+      [
+        "用途：限定银饰镜面反射",
+        "白色金属，黑色非金属",
+        "来源：逐帧像素归属标注"
+      ]
+    ]
+  },
+  "ending": {
+    "asset_name": "12-ending",
+    "title": "独立项目与完整 runbook",
+    "lines": [
+      "github.com/winkidney/h3-character-studio",
+      "失败环节：背面生成、抠图、法线与金属蒙版，已分别记录。",
+      "纠正环节：方向条件、前景提取、逐帧标注与 GPU 复核，见 runbook。"
+    ],
+    "images": [],
+    "labels": [],
+    "footer": "中文文案与口播待用户审阅 · 源模型、正式游戏工程和原片分别保留",
+    "subtitle": "踩坑记录",
+    "source": "来源：项目 runbook / 模型、素材与修订来源记录"
+  },
+  "topic": {
+    "asset_name": "10-volume-topic",
+    "title": "逐帧法线：配对通过，还要画对体积",
+    "lines": [
+      "失败环节：体积法线与镜面参数，整块鼓包错误，高光过于短促。",
+      "纠正环节：局部表面与银饰响应，减弱整体曲率，单独调整腰饰。",
+      "区分袖面、手面、发束与衣褶朝向，加强各部位体积层次。",
+      "降低整块区域的体积感，避免照出不存在的错误体块。"
+    ],
+    "images": [
+      "output/video-technical-v9-review/topic-color.png",
+      "output/video-technical-v9-review/topic-clay.png"
+    ],
+    "labels": [
+      "颜色帧 · 13",
+      "灰材质 · 局部表面朝向"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：局部法线重绘 / Godot 原生材质参数"
+  },
+  "ownership": {
+    "asset_name": "11-ownership-topic",
+    "title": "外部块：先查前景，再查表面归属",
+    "lines": [
+      "失败环节：抠图与表面归属，背景残留、脸部凸包和鼻部块导致外部块。",
+      "纠正环节：前景提取与逐帧标注，删除鼻部块，限制脸部和银饰像素。",
+      "原动画保留；用暖光 GPU 原帧复核，局部放大从无损 PNG 制作。"
+    ],
+    "images": [
+      "output/clean-frame-review-v8/gpu-face-old.png",
+      "output/clean-frame-review-v8/gpu-face-new.png"
+    ],
+    "labels": [
+      "旧版：鼻部方块与脸颈残留",
+      "新版：用户已确认外部块消除"
+    ],
+    "footer": "H3 character studio · 制作实录 / 审阅版",
+    "subtitle": "踩坑记录",
+    "source": "来源：前景提取 / 逐帧表面归属 / GPU 原帧复核"
+  }
+}

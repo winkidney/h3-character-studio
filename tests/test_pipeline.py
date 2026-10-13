@@ -40,6 +40,18 @@ class PipelineTests(unittest.TestCase):
                        palette_colors=[[195, 130, 65]])]
         self.geo.write_text(yaml.safe_dump(dict(schema_version=1, keyframes={0: shapes})))
 
+    def build_normals(self, animation, geo, target, **kwargs):
+        # The fixture's copper rectangle is authored in setUp. Bind its exact
+        # pixel ownership to each exported frame, rather than infer from a rig.
+        ann=self.root/(target.name+"-materials");ann.mkdir(exist_ok=True)
+        data=json.loads((animation/"animation.json").read_text())
+        for i,row in enumerate(data["frames"]):
+            rgb=np.asarray(Image.open(animation/row["path"]).convert("RGBA"))
+            yy,xx=np.where((rgb[...,:3]==[195,130,65]).all(-1)&(rgb[...,3]>0))
+            core.write_json(ann/f"{i:05d}.json",dict(schema_version=1,frame=i,source_sha256=row["sha256"],
+                review_status="agent-reviewed",reviewed_by="authored-test-fixture",regions={"copper":np.stack([xx,yy],-1).tolist()},protected_regions={}))
+        return normals.build(animation,geo,target,material_annotations=ann,**kwargs)
+
     def tearDown(self): self.temp.cleanup()
 
     def animation(self, name="extracted"):
@@ -105,7 +117,7 @@ class PipelineTests(unittest.TestCase):
         animation = self.animation()
         before = {p.name: core.digest(p) for p in animation.glob("frames/*.png")}
         target = self.root / "normals"
-        report = normals.build(animation, self.geo, target)
+        report = self.build_normals(animation, self.geo, target)
         self.assertTrue(report["geometry_coverage_complete"])
         self.assertLess(report["max_unit_vector_error"], .014)
         self.assertEqual(before, {p.name: core.digest(p) for p in animation.glob("frames/*.png")})
@@ -128,21 +140,93 @@ class PipelineTests(unittest.TestCase):
                       dict(id="cloth", kind="plane", points=[[1, 1], [250, 1], [250, 250]], normal=[0, 0, 0])):
             with self.assertRaises(ValueError): normals.render(color, [shape])
 
+    def test_pose_transport_changes_fold_volume_between_anchors(self):
+        first = [dict(id="fold", kind="tube", points=[[110,120],[115,170]], radius=4, slope=.2)]
+        last = [dict(id="fold", kind="tube", points=[[120,120],[125,170]], radius=10, slope=.8)]
+        flow = np.zeros((4,256,256,2), np.float32)
+        rigs = normals.transport({0:first, 2:last}, flow, flow)
+        self.assertEqual(rigs[1][0]["radius"], 7)
+        self.assertAlmostEqual(rigs[1][0]["slope"], .5)
+        self.assertAlmostEqual(rigs[3][0]["slope"], .5)
+        self.assertEqual(first[0]["radius"], 4)
+
+    def test_surface_region_covers_cloth_outside_volume_ellipse(self):
+        color = np.asarray(Image.open(self.raw / "00000.png"))
+        shapes = [dict(id="skirt", kind="ellipsoid", ellipse=[128,140,12,18], slope=.5,
+                       surface_region=[[80,88],[180,88],[180,190],[80,190]])]
+        vectors, labels, _ = normals.render(color, shapes)
+        self.assertEqual(labels[170,100], 1)
+        self.assertGreater(abs(float(vectors[170,100,0])), .2)
+        self.assertEqual(labels[10,10], 0)
+
+    def test_fallback_coverage_is_not_complete_authored_geometry(self):
+        animation = self.animation()
+        spec = yaml.safe_load(self.geo.read_text())
+        spec["keyframes"][0][0]["fallback"] = True
+        self.geo.write_text(yaml.safe_dump(spec))
+        report = self.build_normals(animation, self.geo, self.root / "fallback")
+        self.assertTrue(report["exact_alpha"])
+        self.assertFalse(report["geometry_coverage_complete"])
+        self.assertGreater(sum(report["fallback_pixels"]), 0)
+
+    def test_per_frame_edits_allow_newly_exposed_fold_topology(self):
+        animation = self.animation()
+        spec = yaml.safe_load(self.geo.read_text())
+        first = dict(id="fold", kind="tube", points=[[110,120],[115,170]], radius=4)
+        last = dict(id="fold", kind="tube", points=[[110,120],[113,145],[115,170]], radius=4)
+        base = spec["keyframes"][0]
+        spec["keyframes"] = {0:base+[first], 2:base+[last]}
+        self.geo.write_text(yaml.safe_dump(spec))
+        edits = self.root / "edits"
+        for index in range(5):
+            core.write_json(edits / f"{index:05d}/geometry.json",
+                            dict(shapes=base+[first if index<2 else last]))
+        target = self.root / "topology"
+        report = self.build_normals(animation, self.geo, target, edits=edits)
+        self.assertTrue(report["exact_alpha"])
+        self.assertEqual(report["frame_count"], 5)
+        painted = self.root / "painted-topology"
+        rebuilt = self.build_normals(animation, self.geo, painted, painted_layers=target / "editable")
+        self.assertTrue(rebuilt["exact_alpha"])
+        self.assertEqual(core.digest(target / "mask-atlas.png"), core.digest(painted / "mask-atlas.png"))
+        pose = json.loads((painted / "editable/00002/geometry.json").read_text())
+        self.assertEqual(len(next(s for s in pose["shapes"] if s["id"] == "fold")["points"]), 3)
+        for index in range(5):
+            before = np.asarray(Image.open(target / f"frames/{index:05d}.png"))
+            after = np.asarray(Image.open(painted / f"frames/{index:05d}.png"))
+            visible = before[...,3] > 0
+            a = before[visible,:3].astype(float)/127.5-1
+            b = after[visible,:3].astype(float)/127.5-1
+            cosine = (a*b).sum(-1)/(np.linalg.norm(a,axis=-1)*np.linalg.norm(b,axis=-1))
+            # Re-normalizing RGBA8 vectors can change a component by one level.
+            self.assertLess(float(np.max(np.degrees(np.arccos(np.clip(cosine,-1,1))))), 1)
+
+    def test_fine_metal_regions_do_not_fill_adjacent_cloth(self):
+        color = np.asarray(Image.open(self.raw / "00000.png"))
+        shape = dict(id="clasp", kind="ellipsoid", ellipse=[120,104,6,7],
+                     metallic=True, pixel_region=[[118,102],[122,106]])
+        _, labels, metal = normals.render(color, [shape])
+        self.assertTrue(metal[102,118])
+        self.assertFalse(metal[104,120])
+        self.assertEqual(int(metal.sum()), 2)
+        shape["pixel_region"] = [[120.5,104]]
+        with self.assertRaises(ValueError): normals.render(color, [shape])
+
     def test_painted_layers_and_geometry_edits_use_explicit_sources(self):
         animation = self.animation()
         original = self.root / "normals"
-        normals.build(animation, self.geo, original)
+        self.build_normals(animation, self.geo, original)
         painted = self.root / "painted"
-        normals.build(animation, self.geo, painted, painted_layers=original / "editable")
+        self.build_normals(animation, self.geo, painted, painted_layers=original / "editable")
         self.assertTrue(normals.verify(animation, painted)["exact_alpha"])
         edited = self.root / "edited"
-        normals.build(animation, self.geo, edited, edits=original / "editable")
+        self.build_normals(animation, self.geo, edited, edits=original / "editable")
         self.assertEqual(core.digest(original / "frames/00000.png"), core.digest(edited / "frames/00000.png"))
 
     def test_normal_atlas_tampering_is_rejected(self):
         animation = self.animation()
         target = self.root / "normals"
-        normals.build(animation, self.geo, target)
+        self.build_normals(animation, self.geo, target)
         (target / "atlas.png").write_bytes(b"changed")
         with self.assertRaises((ValueError, OSError)):
             normals.verify(animation, target)
@@ -150,7 +234,7 @@ class PipelineTests(unittest.TestCase):
     def test_delivery_is_portable_and_requires_four_matching_directions(self):
         animation = self.animation()
         normal = self.root / "normals"
-        normals.build(animation, self.geo, normal)
+        self.build_normals(animation, self.geo, normal)
         spec = self.root / "delivery.yaml"
         spec.write_text(yaml.safe_dump(dict(schema_version=1, id="test-character", directions={d: dict(
             animation="extracted/pixel-256", normals="normals", idle_frame=2) for d in recipe.DIRECTIONS})))

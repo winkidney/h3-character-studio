@@ -91,16 +91,27 @@ def extract(raw, output, palette_path, *, runtime=None, prepared_rgba=False, fps
             os.environ.setdefault("OMP_NUM_THREADS", "4")
             predict = matting.predictor("toonout", 1024, "cuda", "float32", models=model.parent,
                 node_source=backend["sources"]["birefnet"], comfy_source=backend["sources"]["comfyui"])
-            for folder in ("soft-mask", "foreground", "rgba-soft", "rgba-hard"):
+            for folder in ("neural-soft-mask", "soft-mask", "foreground", "rgba-soft", "rgba-hard"):
                 (output / folder).mkdir()
             for index, path in enumerate(files):
                 image = Image.open(path).convert("RGB")
                 mask = predict([image])[0]
+                Image.fromarray(np.rint(mask * 65535).astype(np.uint16)).save(output / "neural-soft-mask" / f"{index:05d}.png")
+                mask, cleanup = matting.background_prior(image, mask, protected_palette=colors)
                 alpha16 = np.rint(mask * 65535).astype(np.uint16)
                 Image.fromarray(alpha16).save(output / "soft-mask" / f"{index:05d}.png")
                 alpha = alpha16.astype(np.float64) / 65535
-                foreground = np.rint(matting.recover(image, alpha) * 255).astype(np.uint8)
+                recovered = matting.recover(image, alpha)
+                if cleanup.get("background_prior_verified"):
+                    recovered, alpha, spill = matting.recover_chroma_edges(image, alpha, recovered, key=cleanup["background_rgb"], palette=colors)
+                    cleanup.update(spill)
+                    alpha16 = np.rint(alpha * 65535).astype(np.uint16)
+                    Image.fromarray(alpha16).save(output / "soft-mask" / f"{index:05d}.png")
+                    alpha = alpha16.astype(np.float64) / 65535
+                foreground = np.rint(recovered * 255).astype(np.uint8)
                 Image.fromarray(foreground).save(output / "foreground" / f"{index:05d}.png")
+                cleanup["foreground_checks"] = matting.validate_foreground(image, alpha, foreground, key=cleanup.get("background_rgb"))
+                core.write_json(output / "foreground" / f"{index:05d}.quality.json", cleanup)
                 soft = np.dstack((foreground, np.rint(alpha * 255).astype(np.uint8)))
                 soft[soft[..., 3] == 0, :3] = 0
                 Image.fromarray(soft).save(output / "rgba-soft" / f"{index:05d}.png")

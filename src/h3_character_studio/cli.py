@@ -44,7 +44,7 @@ def parser():
     q = sub.add_parser("review"); q.add_argument("animation", type=Path); q.add_argument("--output", required=True, type=Path)
     q = sub.add_parser("normals"); q.add_argument("animation", type=Path)
     q.add_argument("--geometry", required=True, type=Path); q.add_argument("--output", required=True, type=Path)
-    q.add_argument("--edits", type=Path); q.add_argument("--painted-layers", type=Path)
+    q.add_argument("--edits", type=Path); q.add_argument("--painted-layers", type=Path); q.add_argument("--materials", type=Path, help="Reviewed per-frame material ownership JSON")
     q = sub.add_parser("verify-normals"); q.add_argument("animation", type=Path); q.add_argument("normals", type=Path)
     q = sub.add_parser("assemble"); q.add_argument("spec", type=Path); q.add_argument("--output", required=True, type=Path)
     q = sub.add_parser("verify"); q.add_argument("bundle", type=Path)
@@ -86,7 +86,7 @@ def execute(args):
     if c == "review": return extraction.review(args.animation, args.output)
     if c == "normals":
         if args.edits and args.painted_layers: raise ValueError("Choose geometry edits or painted layers, not both")
-        return normals.build(args.animation, args.geometry, args.output, edits=args.edits, painted_layers=args.painted_layers)
+        return normals.build(args.animation, args.geometry, args.output, edits=args.edits, painted_layers=args.painted_layers, material_annotations=args.materials)
     if c == "verify-normals": return normals.verify(args.animation, args.normals)
     if c == "assemble": return delivery.assemble(args.spec, args.output)
     if c == "verify": return delivery.verify(args.bundle)

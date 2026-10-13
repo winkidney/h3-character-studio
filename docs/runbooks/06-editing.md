@@ -7,3 +7,48 @@
 进入剪辑阶段时给用户展示完整分镜与逐句文案。用户确认后再执行字幕、配音或背景音乐、节奏调整和片尾开源地址。音乐需使用用户提供或明确可使用的素材；开源地址以实际发布仓库为准。
 
 保留可编辑剪辑源、全部原片、字幕源、文字稿与最终文件。交付前核对分辨率、字幕安全边距、中文字体、声音、电平、帧率、完整解码与末帧。制作方法可重跑，ImageGen／H3 的重新推理不保证相同像素。
+
+## 最新效果先行剪辑与像素字体
+
+当前顺序和口播草案以 [三分钟文案](../video-script-3min.md) 为准：前 70 秒为夜晚漫游 10 秒、四向光照 24 秒、冷暖环绕 36 秒，后 110 秒为制作过程。四向镜头另行录制，上、下、左、右各 6 秒，两栏同步观察原色和灰材质。
+
+`examples/video/timeline.json` 为 13 段的权威帧数配置，`cards.json` 保存标题、正文与图片来源，`build_review.py` 制作 RGB 无损母版及 MP4 副本。正文与标题字号分开，复用 jibijibi-game 当前可玩界面的 Z Labs Pixel 12px 简中字体。按原生 12px 最近邻放大，主标题 60px、正文 36px、命令与图注 24px；不使用轮廓字体回退。字体和 SIL OFL 原文随示例保存。
+
+底部 92px overlay 显示当前 part 标题、时间和按真实时长分段的进度条。进度从帧序号推导，颜色区分过去、当前和未来；不把它描述成可交互的播放器控件。修改顺序或时长时，只改 timeline，再生成，不手工拼接独立计时条。
+
+依赖现有 Python/Pillow，以及本机 FFmpeg/ffprobe。显式准备案例素材后运行 `.venv/bin/python examples/video/build_review.py --root .`。输出写到 `output/video-technical-v10-review/`，旧 v8 原片与历史剪辑保留。
+
+四向白光 v10 已在实际 GPU 中把点光强度从 1.8 降为 0.7；环境光始终为 0。顶部和底部随当前方向高亮，上方金黄、下方蓝、左侧青绿、右侧珊瑚红，并保留方向文字。独立四向片包含自己的四段进度 overlay。
+
+可用 `--cardinal-capture .local/hd2d-demo/build/ancient-canal/jade-cardinal-v10 --reuse-review output/video-technical-v9-review` 显式复用上一版不变的 RGB 无损镜头。文字卡只有在新旧 PNG 摘要相同后才复用，来源写入剪辑配方。
+
+实时选择四向灯光参数可运行 [实际 GPU 调参台](../../examples/video/lighting-control/README.md)。点击保存后记录参数与显示截图，录像读取 `output/lighting-control/selected.json`，不手工复写。
+
+本轮制作卡片由 `cards.json` 的 `subtitle`、`source` 和 `image_notes` 控制。概念／母版标注所需生图模型，同时注明实际来源；背面失败及后续段落统一使用“踩坑记录”，分别说明失败和纠正环节。素材用途写在各图片下方，不能将算法绘制的法线或标注蒙版写成模型直接生成。
+
+片尾 4 秒使用 `call_to_action` 的像素文字弹入与三项依次点亮，无新增音乐或配音，不改变全片时长。剪辑配方保存卡片来源、图片用途和片尾动画时间范围。新输出保留在 `output/video-technical-v14-content-review/`。
+
+## 添加用户提供的背景音乐
+
+使用 `examples/video/add_audio.py`，显式传入已验证的 MP4 和用户选定音频，输出到新的目录。视频轨使用流复制，添加音乐不会重新编码画面；音频转换为 AAC、48kHz、双声道、256kbps，提升播放兼容性。
+
+```sh
+.venv/bin/python examples/video/add_audio.py \
+  --video output/video-technical-v14-content-review/technical-demo-3min-review.mp4 \
+  --audio /path/to/user-provided-bgm.m4a \
+  --output output/video-technical-v15-bgm/technical-demo-3min-with-bgm.mp4
+```
+
+默认双遍响度处理目标为 -18 LUFS、真峰值上限 -1.5 dBTP，开头 0.6 秒淡入、末尾 4 秒淡出。音乐过长截至视频长度，过短只补静音，不擅自循环。本次用户提供《夜色河灯》，源时长 179.96 秒，补齐 0.04 秒后形成完整 180 秒音轨。保留静音影片、原音频与 JSON 配方，音频原文件不进入源码包。
+
+交付前比对添加音乐前后的完整视频码流哈希、分辨率、帧数和时长，检查音轨编码、通道与时长，完整解码并复测响度与峰值。若之后加入口播，另行混音调整音乐电平。
+
+## 原配色分段框与已确认的环绕替换
+
+用户确认 v16 新参数环绕后，用 `--orbit-review output/light-orbit-selected-v16-review` 显式替换 34–70 秒来源，读入已验证的 RGB 无损原片，不从 MP4 再放大。每轮前 6 秒低位扫光，后 6 秒从一端经头顶回到另一端；单灯 2.65、混合每灯 1.325、正面距离 0.8 米、1× 行走，逐帧法线／蒙版与最新资源哈希一致。
+
+底部参考用户截图改为连续分段框，短标题在框内。按随后修正保留原青绿／暖金／暗灰配色，上方添加简短说明和时间。`timeline.json` 的 `short_title` 是标签来源：漫游、四向、环绕、设计、母版、环境、H3、背面、抠图、法线、体积、修复、片尾。24px 像素字，框为 `[48,1026,1824,52]`。每段先保证文字宽度及 24px 内边距，再按时长分配剩余空间，避免 4 秒片尾挤掉文字；填充仍按实际帧索引推进。
+
+四向／环绕的当前框显示简短方向与冷暖提示，顶部完整标题、来源和“踩坑记录”保留，上方短说明独立于框内标题。游戏镜头的来源标记移入顶部，素材制作卡仍在卡片中显示来源。
+
+保持音乐时，将 v15 已验证的 AAC 音轨流复制到新成片，避免重复音频压缩与响度处理。核对音频完整码流哈希相同，180 秒时间线与淡入淡出保持。最终输出写到 `output/video-technical-v18-final/`，历史版本不覆盖。
