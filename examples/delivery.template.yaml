@@ -1,0 +1,9 @@
+schema_version: 1
+id: jade-traveler
+pixel_size: 0.009
+# Paths relative to this spec. Set idle_frame after actual pose review.
+directions:
+  down: {animation: runs/down-selected/pixel-256, normals: runs/down-normals, idle_frame: 0}
+  up: {animation: runs/up-selected/pixel-256, normals: runs/up-normals, idle_frame: 0}
+  left: {animation: runs/left-selected/pixel-256, normals: runs/left-normals, idle_frame: 0}
+  right: {animation: runs/right-selected/pixel-256, normals: runs/right-normals, idle_frame: 0}

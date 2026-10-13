@@ -1,0 +1,20 @@
+schema_version: 1
+id: jade-traveler
+pixel_size: 0.009
+directions:
+  down:
+    animation: runs/down-001-selected/pixel-256
+    normals: runs/down-001-normals-v2
+    idle_frame: 18
+  up:
+    animation: runs/up-002-selected/pixel-256
+    normals: runs/up-002-normals-v2
+    idle_frame: 15
+  left:
+    animation: runs/left-001-selected/pixel-256
+    normals: runs/left-001-normals-v2
+    idle_frame: 11
+  right:
+    animation: runs/right-001-selected/pixel-256
+    normals: runs/right-001-normals-v2
+    idle_frame: 11

@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "h3-character-studio"
+version = "0.1.0"
+description = "Four-direction H3 character animation, native pixel extraction and geometric normal authoring"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+dependencies = ["numpy>=2,<3", "Pillow>=11,<13", "PyYAML>=6,<7", "opencv-python-headless>=4.10,<6"]
+
+[project.scripts]
+h3-character = "h3_character_studio.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+h3_character_studio = ["data/*"]
+
+[tool.setuptools.data-files]
+"share/h3-character-studio" = ["README.md", "SOURCE.json", "THIRD_PARTY.md", "delivery.jade-traveler.yaml"]
+"share/h3-character-studio/docs" = ["docs/*.md", "docs/validation.json"]
+"share/h3-character-studio/docs/runbooks" = ["docs/runbooks/*.md"]
+"share/h3-character-studio/third_party" = ["third_party/asset-workbench-LICENSE"]
+"share/h3-character-studio/examples" = ["examples/*.yaml", "examples/*.py"]
+"share/h3-character-studio/examples/jade-traveler" = ["examples/jade-traveler/*.yaml", "examples/jade-traveler/*.py"]
+"share/h3-character-studio/examples/jade-traveler/concepts" = ["examples/jade-traveler/concepts/*"]
+"share/h3-character-studio/examples/jade-traveler/masters" = ["examples/jade-traveler/masters/*"]
+"share/h3-character-studio/examples/jade-traveler/prepared" = ["examples/jade-traveler/prepared/*"]
+"share/h3-character-studio/examples/jade-traveler/prompts" = ["examples/jade-traveler/prompts/*"]
+"share/h3-character-studio/examples/jade-traveler/geometry" = ["examples/jade-traveler/geometry/*.yaml"]
+"share/h3-character-studio/examples/jade-traveler/geometry/references" = ["examples/jade-traveler/geometry/references/*"]

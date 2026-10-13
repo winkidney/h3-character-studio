@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "extracted_files": [
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/core.py",
+      "sha256": "93b7f4ae63ba706b804f5d6d41adfc266e65b7b049808bd80ecc261faca1ae71"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/matting.py",
+      "sha256": "71bba7edd6d954e5fcbb31df1607d91c5a19ee38a1a962c1882e339a1b1b23e1"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/h3/sw-walk-short.api.json",
+      "sha256": "e34919003219c918677d7fc627d26a67ac62278fe348254542b42b059d4c069a"
+    },
+    {
+      "path": "hd-2d-godot/tools/ancient_canal/build_character_normals.py",
+      "sha256": "c4d98ccab00dada58a8770541f8263774bfae6a3a34409220a8f6730ec98e85b"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/nodes.py",
+      "sha256": "33bd4312692627e616144ba0677d2cdb5ee7b0e8bd06b32ddcd98f98fa25892f"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/workflows.py",
+      "sha256": "029228962a8d632d83b532095df2ac31d0d5507a935d91854417c5df8cb4db30"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/sprite_recipe.py",
+      "sha256": "9764338af24184c8f0589af75674bf21365fa972d9a93b8a89f1582df413b74c"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/animation/h3/models.lock.json",
+      "sha256": "a75acda348cad2e830c957abaf9b687ac4d7927da3252b0683f83d1d44cddc88"
+    },
+    {
+      "path": "asset-workbench/src/asset_workbench/models.lock.json",
+      "sha256": "838b032ceafd5e108733154f33e2801ecda8f749b543c8fa775e200b8617032a"
+    },
+    {
+      "path": "asset-workbench/locks/h3-linux-python312-cu130.lock",
+      "sha256": "47f788077e7a113d5deab59edcdbec4d69829c48faadae3df422f0040a582ee6"
+    },
+    {
+      "path": "asset-workbench/locks/toonout-linux-python312-cu130.lock",
+      "sha256": "f350f329335aa43a1605a73ec5e2360ab84da69c6b4487971745f7dc862a86cd"
+    }
+  ],
+  "source_checkouts": {
+    "asset-workbench": {
+      "head": "172ed6928076892f291b7dd9b8b9bbc47d5d239e",
+      "worktree_dirty": true
+    },
+    "hd-2d-godot": {
+      "head": "d31acc90cea341e2d72f19b44e6a18c29c0f9ad6",
+      "worktree_dirty": false
+    }
+  },
+  "private_source_assets_included": false,
+  "gpu_generation_verified": true,
+  "extraction_map": {
+    "core.py": "AssetWorkbench animation/core.py, unchanged",
+    "matting.py": "AssetWorkbench predictor and recover functions, independent imports",
+    "geometry.py": "HD2D unit, optical_flow, sample_flow, ellipse_region, tube_geometry, ellipsoid functions",
+    "workflow.py": "H3 API template and UI serialization with independent raw-output nodes",
+    "normals.py": "generalized external geometry and keypose transport; no silver-girl hardcoded coordinates"
+  }
+}

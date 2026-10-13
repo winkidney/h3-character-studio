@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "minimax_h3_fl2va_pruned_int8_convrot",
+      "repo": "Comfy-Org/MiniMax-H3",
+      "revision": "7e75982b97cd5a41d2dcfa1904ee88d0686d6fd1",
+      "file": "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "subdir": "diffusion_models",
+      "size": 20970379616,
+      "sha256": "e889202c41dafb67b10d67b97f0d8541508036a6090af23425a5c2615d03c47a",
+      "license": "minimax-h3-community-license-agreement",
+      "platforms": [
+        "rtx4070s"
+      ],
+      "branches": [
+        "h3"
+      ]
+    },
+    {
+      "id": "qwen3vl_32b_minimax_h3_int8_convrot",
+      "repo": "Comfy-Org/MiniMax-H3",
+      "revision": "7e75982b97cd5a41d2dcfa1904ee88d0686d6fd1",
+      "file": "text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+      "subdir": "text_encoders",
+      "size": 27141342152,
+      "sha256": "bc2ced0fbea64757fa9acddccfc0b3f4819d1dcf1da6c124d690d368be283923",
+      "license": "minimax-h3-community-license-agreement",
+      "platforms": [
+        "rtx4070s"
+      ],
+      "branches": [
+        "h3"
+      ]
+    },
+    {
+      "id": "minimax_h3_video_vae_int8_convrot",
+      "repo": "Comfy-Org/MiniMax-H3",
+      "revision": "7e75982b97cd5a41d2dcfa1904ee88d0686d6fd1",
+      "file": "vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "subdir": "vae",
+      "size": 2811065184,
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+      "license": "minimax-h3-community-license-agreement",
+      "platforms": [
+        "rtx4070s"
+      ],
+      "branches": [
+        "h3"
+      ]
+    },
+    {
+      "id": "toonout",
+      "suites": [
+        "toonout",
+        "matting"
+      ],
+      "repo": "joelseytre/toonout",
+      "revision": "cbf720eca394edcde66b861a8a8c20fbabe9c748",
+      "file": "toonout.pth",
+      "subdir": "toonout",
+      "filename": "toonout.pth",
+      "size": 885046394,
+      "sha256": "8c7f8a0bc24400f4caade76622f75ff22ca1e93e169add9d2b70093e2487fbe5",
+      "license": "MIT"
+    }
+  ]
+}

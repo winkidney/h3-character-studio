@@ -1,0 +1,30 @@
+schema_version: 1
+id: jade-traveler
+# Template only. Four approved direction masters are required before generation.
+settings:
+  width: 768
+  height: 768
+  frames: 56
+  fps: 24
+  steps: 40
+  seed: 41
+  mid_guide_frame: 27
+  palette_size: 96
+  pivot: [128, 240]
+directions:
+  down:
+    master: masters/down.png
+    prompt_file: prompts/down.txt
+    seed: 241
+  up:
+    master: masters/up.png
+    prompt_file: prompts/up.txt
+    seed: 441
+  left:
+    master: masters/left.png
+    prompt_file: prompts/left.txt
+    seed: 341
+  right:
+    master: masters/right.png
+    prompt_file: prompts/right.txt
+    seed: 41

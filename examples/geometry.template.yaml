@@ -1,0 +1,33 @@
+schema_version: 1
+# Syntax example only. Replace every coordinate and material color for your frames.
+keyframes:
+  0:
+    - id: cloth-base
+      kind: plane
+      points: [[1, 1], [254, 1], [254, 254], [1, 254]]
+      normal: [0, 0, 1]
+      metallic: false
+    - id: head
+      kind: ellipsoid
+      ellipse: [128, 65, 28, 30]
+      slope: 0.65
+      yaw: 0.0
+      metallic: false
+    - id: left-ponytail
+      kind: tube
+      points: [[98, 45], [84, 78], [74, 110]]
+      radius: 8
+      braid: false
+      metallic: false
+    - id: right-ponytail
+      kind: tube
+      points: [[157, 45], [169, 80], [178, 108]]
+      radius: 8
+      braid: false
+      metallic: false
+    - id: brooch
+      kind: ellipsoid
+      ellipse: [130, 100, 7, 7]
+      # Fill from the adopted shared palette. Limit to actual metal ROI.
+      palette_colors: [[210, 212, 218], [170, 172, 180]]
+      metallic: true

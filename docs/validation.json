@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-13",
+  "status": "four_direction_gpu_materials_verified_recording_raw_video",
+  "character_revision": "right-v2-user-selected",
+  "cpu_source_tests": {
+    "passed": 17
+  },
+  "cpu_fresh_wheel_tests": {
+    "passed": 17,
+    "cwd_outside_source": true,
+    "asset_workbench_installed": false,
+    "isolated_python": true
+  },
+  "runbooks": 6,
+  "h3_generation": {
+    "status": "four_directions_generated_selected",
+    "directions": {
+      "right": {
+        "run_id": "jade-traveler-right-d7d617e86976",
+        "prompt_id": "7219dc39-abe4-4c24-b10d-6ac6285cc6a8",
+        "status": "generated",
+        "seed": 41,
+        "submission_attempts": 1,
+        "job_directory": "runs/right-001",
+        "visual_review": "selected_27_contiguous_frames"
+      },
+      "down": {
+        "run_id": "jade-traveler-down-c7ec4a5bdc5a",
+        "prompt_id": "9f652bb4-8a63-48d9-b9bd-e68b5e9d8869",
+        "status": "generated",
+        "seed": 241,
+        "submission_attempts": 1,
+        "job_directory": "runs/down-001",
+        "visual_review": "selected_27_contiguous_frames"
+      },
+      "up_failed": {
+        "run_id": "jade-traveler-up-a1ade5fa81b8",
+        "prompt_id": "5a6bb5b9-f8cd-48a6-8785-687b6af04aaf",
+        "status": "generated",
+        "seed": 441,
+        "submission_attempts": 1,
+        "job_directory": "runs/up-001",
+        "visual_review": "rejected_front_view_leakage"
+      },
+      "left": {
+        "run_id": "jade-traveler-left-0f1530df1fcc",
+        "prompt_id": "7738690a-5009-440c-a3a5-cd6789375eae",
+        "status": "generated",
+        "seed": 341,
+        "submission_attempts": 1,
+        "job_directory": "runs/left-001",
+        "visual_review": "selected_27_contiguous_frames"
+      },
+      "up_revision": {
+        "run_id": "jade-traveler-up-1aabc399a110",
+        "prompt_id": "b01c1d29-3b20-439a-af91-353c2a0e86ae",
+        "status": "generated",
+        "seed": 442,
+        "submission_attempts": 1,
+        "job_directory": "runs/up-002",
+        "visual_review": "all_56_frames_rear_facing_selected_27"
+      }
+    }
+  },
+  "normals_for_new_character": {
+    "status": "108_frames_paired_verified",
+    "visual_approval": "agent_reviewed_preview_user_final_review_pending",
+    "method": "authored_geometry_bidirectional_transport_pose_specific_boot_corrections",
+    "gpu_material_capture": {
+      "passed": true,
+      "renderer": "Forward+",
+      "adapter": "NVIDIA GeForce RTX 4070 SUPER",
+      "size": [
+        1920,
+        1080
+      ],
+      "frames": 648,
+      "loops_per_direction": 3,
+      "mode": "minimized_no_focus_offscreen_SubViewport"
+    },
+    "metal_toggle": {
+      "passed": true,
+      "changed_pixels_max_by_direction": {
+        "down": 2175,
+        "up": 1618,
+        "left": 2130,
+        "right": 1166
+      }
+    }
+  },
+  "godot_adoption": {
+    "status": "temporary_demo_imported_gpu_verified",
+    "original_project_modified": false
+  },
+  "video": {
+    "status": "closeup_dusk_night_rerecording",
+    "copy": "docs/video-script-3min.md",
+    "user_preference": "three_minute_technical_demo",
+    "raw_physical_route": {
+      "passed": true,
+      "native_size": [
+        1920,
+        1080
+      ],
+      "frames": 959,
+      "wall_duration_ms": 71935.062,
+      "observed_capture_fps": 13.3314683,
+      "sampling_complete": false,
+      "timing": "measured VFR; gaps retained",
+      "full_decode_verified": true
+    },
+    "closeup_revision": {
+      "periods": [
+        "dusk",
+        "night"
+      ],
+      "native_size": [
+        1920,
+        1080
+      ],
+      "fps": 30,
+      "mode": "offline MovieWriter",
+      "camera_offset": [
+        0,
+        1.25,
+        6.4
+      ],
+      "fov": 30,
+      "lamp_holds_seconds": 10,
+      "status": "rendering"
+    }
+  },
+  "publication": {
+    "status": "destination_confirmed_preparing",
+    "repository": "winkidney/h3-character-studio"
+  },
+  "gpu_environment": {
+    "status": "installed",
+    "fresh_venv": true,
+    "dependencies": "h3-linux-python312-cu130.lock",
+    "fixed_source_checkouts": true,
+    "models_verified_full_sha256": 4,
+    "asset_workbench_installed": false,
+    "torch": "2.14.0+cu130",
+    "torchvision": "0.29.0+cu130",
+    "cuda_tensor_sum": 256.0,
+    "device": "NVIDIA GeForce RTX 4070 SUPER",
+    "inference_verified": true
+  },
+  "comfyui": {
+    "status": "ready",
+    "version": "0.36.0",
+    "loopback_port": 8197,
+    "graph_nodes": 14,
+    "ui_graph_links": 21,
+    "schema_problems": [],
+    "queue_empty": false,
+    "gpu_submitted": true
+  },
+  "implementation_files": {
+    "src/h3_character_studio/__init__.py": "a5df16ceb04fd6ae6f1a4a5cef181f7dfc65159126682c72659aeda94382c60e",
+    "src/h3_character_studio/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "src/h3_character_studio/cli.py": "aa43e4ee1e7831f1feee92b6f5548749f732d8db389cbb41be2affb3e6bce0cd",
+    "src/h3_character_studio/comfy_nodes.py": "6144ace8c690d4cb3861eb784238a4d279e702847c2d1511888469a41e232c13",
+    "src/h3_character_studio/core.py": "93b7f4ae63ba706b804f5d6d41adfc266e65b7b049808bd80ecc261faca1ae71",
+    "src/h3_character_studio/data/h3-linux-python312-cu130.lock": "e449e96efa05a716b26956bb2d7941bfa4b02ca4b9a96af3d79e148dc8514e71",
+    "src/h3_character_studio/data/h3.api.json": "e34919003219c918677d7fc627d26a67ac62278fe348254542b42b059d4c069a",
+    "src/h3_character_studio/data/models.lock.json": "05d6c7a7254e82e1ae65667b0c5d44878c9f08d942e49d52b0b5e5105e49f66d",
+    "src/h3_character_studio/data/toonout-linux-python312-cu130.lock": "f350f329335aa43a1605a73ec5e2360ab84da69c6b4487971745f7dc862a86cd",
+    "src/h3_character_studio/delivery.py": "6cbd3b5c0181ad25b44bebc7139bdda07bbcf7118647bca7b8a78783fc1145f7",
+    "src/h3_character_studio/extraction.py": "eae6e68bbdcab40ec1dc9e32a0a380ead51d27d45a0d79355386e845396370b2",
+    "src/h3_character_studio/generation.py": "846f3ec0fab6f2d2dbb79a82b4e289ace85bcab3dc6381a6da7f9bb64b26f615",
+    "src/h3_character_studio/geometry.py": "3ed27fbabd23f34c4d73a56afee74f918f7db2421e3b847cf4ac0cc360e99c75",
+    "src/h3_character_studio/matting.py": "74a35e7ff6ebe581c85bf597389bdd0e0237cd5cff45a8049c1ef7d24171baf9",
+    "src/h3_character_studio/normals.py": "6adb4b3d2d7d23cb80fa428a89f2e0a78960479db0027d1aaea18f313889707b",
+    "src/h3_character_studio/recipe.py": "6ca285699e94b5837e196cf1de6dd13b892440794f7145fa22952f3c64cd3c51",
+    "src/h3_character_studio/reference.py": "c51f71d77bb093fd97c26e35f31e63046c9e598bc2f1fc69e1b808dc16758d7d",
+    "src/h3_character_studio/setup.py": "b67e944f78b55d0f56878ee56b6e32456c0a3b3a4f43b3ffcda4a6b32f1fbc3e",
+    "src/h3_character_studio/workflow.py": "523b17a90371bb7570ad0d77de00be4101d83dbec0895cb1f63d269580fded74"
+  },
+  "user_confirmation": "用这一稿继续",
+  "masters": {
+    "directions": [
+      "down",
+      "up",
+      "left",
+      "right"
+    ],
+    "independently_generated": true,
+    "layout_canvas": [
+      768,
+      768
+    ],
+    "character_height": 648,
+    "ground_y": 720,
+    "per_animation_frame_recentering": false
+  },
+  "godot_baseline_tests": {
+    "make_test": "failed_existing_missing_document_evidence_links",
+    "source_worktree": "clean",
+    "isolated_editor_import": "passed"
+  }
+}

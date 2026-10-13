@@ -1,0 +1,12 @@
+.venv/
+.runtime/
+.local/
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+output/
+runs/
+models/
+*.part

@@ -1,0 +1,5 @@
+# Copy into .local/model-files.yaml and fill paths on your machine.
+minimax_h3_fl2va_pruned_int8_convrot: /data/models/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors
+qwen3vl_32b_minimax_h3_int8_convrot: /data/models/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors
+minimax_h3_video_vae_int8_convrot: /data/models/vae/minimax_h3_video_vae_int8_convrot.safetensors
+toonout: /data/models/toonout/toonout.pth

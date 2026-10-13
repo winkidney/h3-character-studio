@@ -1,0 +1,14 @@
+{
+  "generator": "built-in image_gen",
+  "seed": null,
+  "usage": "form interpretation only; no guide pixels enter runtime normals",
+  "source_indices": [
+    28,
+    34,
+    39,
+    41,
+    48,
+    54
+  ],
+  "sha256": "607257dce21bb5760fe1b2e383b8b2938659302192468ae6e4240a0434776740"
+}

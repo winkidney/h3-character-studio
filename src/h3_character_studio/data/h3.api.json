@@ -1,0 +1,191 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "h3-sw.png"
+    }
+  },
+  "2": {
+    "class_type": "PixelPrepareReference",
+    "inputs": {
+      "images": [
+        "1",
+        0
+      ],
+      "mask": [
+        "1",
+        1
+      ],
+      "background": "#ff00ff",
+      "width": 768,
+      "height": 768
+    }
+  },
+  "3": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "4": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "5": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "clip": [
+        "4",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ],
+      "prompt": "The single copper-orange fox Penny from the reference. Fixed elevated orthographic isometric camera, full body centered on the same canvas, constant character size. Preserve the exact reference character, copper fur, cream muzzle and tail tip, teal jacket and scarf, brown trousers gloves boots, satchel on anatomical right hip and brass keys. Keep visible eye color dark brown and keep garment structure and accessories unchanged. Face southwest / diagonally down-left, front three-quarter view throughout. Never turn the head or body to face another direction. A seamless two-second walking-in-place loop. Alternate left and right feet through grounded contact, passing and lifted swing poses; arms swing opposite the legs. Keep the pelvis root at its initial location and maintain the same floor plane. Tail and satchel follow the movement subtly. The character never travels across the frame. Return naturally to the exact starting pose and breathing/movement phase at the last frame. Flat uniform solid #ff00ff magenta background, no floor drawing or shadows, no text, cuts, camera motion, rotation, zoom, extra objects or extra limbs. Crisp contours and stable color areas. \n",
+      "width": 768,
+      "height": 768,
+      "length": 56,
+      "first_frame": [
+        "2",
+        0
+      ],
+      "last_frame": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "3",
+        0
+      ],
+      "conditioning": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "3",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 40,
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "10": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 11
+    }
+  },
+  "11": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "10",
+        0
+      ],
+      "guider": [
+        "7",
+        0
+      ],
+      "sampler": [
+        "9",
+        0
+      ],
+      "sigmas": [
+        "8",
+        0
+      ],
+      "latent_image": [
+        "6",
+        1
+      ]
+    }
+  },
+  "12": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "11",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ],
+      "tile_size": 256,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "14": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "h3-palette.png"
+    }
+  },
+  "15": {
+    "class_type": "PixelH3Export",
+    "inputs": {
+      "images": [
+        "12",
+        0
+      ],
+      "palette_reference": [
+        "14",
+        0
+      ],
+      "palette_mask": [
+        "14",
+        1
+      ],
+      "fps": 24.0,
+      "size_a": 64,
+      "size_b": 128,
+      "pivot_a_x": 32,
+      "pivot_a_y": 58,
+      "pivot_b_x": 64,
+      "pivot_b_y": 116,
+      "background_mode": "adaptive",
+      "background": "#ff00ff",
+      "tolerance": 64,
+      "border_tolerance": 32,
+      "palette_size": 48,
+      "palette_reference_size": 256,
+      "palette_override": "",
+      "crop": "",
+      "output_subdir": "h3",
+      "name": "sw-walk-short",
+      "aseprite_binary": "aseprite",
+      "processing_order": "key_then_resize"
+    }
+  }
+}

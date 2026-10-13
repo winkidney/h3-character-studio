@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "user_selected_design",
+  "generator": "built-in image_gen",
+  "seed": null,
+  "edit_target": "right-v1.png",
+  "sha256": "1bd88c5a9d36fb377738eff3cb6c5a78084b5bfb7bf8b658e3e67f5f676712da",
+  "user_requests": [
+    "保留整体，调整服装或配色",
+    "需要添加一些金属饰品",
+    "发型换双马尾"
+  ],
+  "user_confirmation": "用这一稿继续",
+  "date": "2026-10-13"
+}

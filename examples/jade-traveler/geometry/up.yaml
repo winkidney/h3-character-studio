@@ -1,0 +1,3147 @@
+schema_version: 1
+direction: up
+method: authored semantic frame-0 seed, cyclic bidirectional correspondence; review
+  and correct keyposes
+guide_policy: clay guide is an interpretation aid only; no guide pixels or diffuse
+  height inference
+keyframes:
+  0:
+  - id: cloth-base
+    kind: plane
+    points:
+    - - 1
+      - 1
+    - - 254
+      - 1
+    - - 254
+      - 254
+    - - 1
+      - 254
+    normal:
+    - 0
+    - 0
+    - 1
+  - id: back-skirt
+    kind: ellipsoid
+    ellipse:
+    - 126
+    - 153
+    - 43
+    - 34
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: back-left-pleat
+    kind: tube
+    points:
+    - - 112
+      - 120
+    - - 105
+      - 153
+    - - 98
+      - 179
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-middle-pleat
+    kind: tube
+    points:
+    - - 127
+      - 120
+    - - 127
+      - 154
+    - - 126
+      - 183
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-right-pleat
+    kind: tube
+    points:
+    - - 141
+      - 123
+    - - 151
+      - 152
+    - - 155
+      - 177
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: left-leg
+    kind: tube
+    points:
+    - - 116
+      - 180
+    - - 117
+      - 204
+    - - 119
+      - 224
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: left-boot
+    kind: ellipsoid
+    ellipse:
+    - 119
+    - 226
+    - 8
+    - 7
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: right-leg
+    kind: tube
+    points:
+    - - 134
+      - 182
+    - - 135
+      - 208
+    - - 138
+      - 233
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: right-boot
+    kind: ellipsoid
+    ellipse:
+    - 139
+    - 235
+    - 9
+    - 6
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-torso
+    kind: ellipsoid
+    ellipse:
+    - 128
+    - 107
+    - 21
+    - 22
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: left-sleeve
+    kind: tube
+    points:
+    - - 97
+      - 110
+    - - 91
+      - 125
+    - - 85
+      - 136
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: right-sleeve
+    kind: tube
+    points:
+    - - 155
+      - 111
+    - - 163
+      - 125
+    - - 168
+      - 138
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: back-capelet
+    kind: ellipsoid
+    ellipse:
+    - 127
+    - 95
+    - 30
+    - 16
+    slope: 0.35
+    yaw: 0
+    metallic: false
+  - id: satchel
+    kind: ellipsoid
+    ellipse:
+    - 148
+    - 136
+    - 12
+    - 14
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-strap
+    kind: tube
+    points:
+    - - 113
+      - 84
+    - - 127
+      - 109
+    - - 145
+      - 133
+    radius: 2.5
+    slope: 0.35
+    braid: false
+    metallic: false
+  - id: back-head-hair
+    kind: ellipsoid
+    ellipse:
+    - 126
+    - 49
+    - 25
+    - 27
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: &id001
+    - - 117
+      - 82
+      - 62
+    - - 95
+      - 98
+      - 86
+    - - 108
+      - 81
+      - 65
+    - - 109
+      - 73
+      - 56
+    - - 103
+      - 70
+      - 54
+    - - 92
+      - 70
+      - 60
+    - - 91
+      - 62
+      - 48
+    - - 72
+      - 62
+      - 60
+    - - 73
+      - 59
+      - 55
+    - - 107
+      - 57
+      - 53
+    - - 75
+      - 57
+      - 53
+    - - 74
+      - 57
+      - 52
+    - - 73
+      - 56
+      - 52
+    - - 71
+      - 56
+      - 52
+    - - 71
+      - 55
+      - 51
+    - - 71
+      - 55
+      - 50
+    - - 80
+      - 53
+      - 49
+    - - 69
+      - 53
+      - 50
+    - - 68
+      - 53
+      - 49
+    - - 86
+      - 49
+      - 42
+    - - 95
+      - 36
+      - 38
+    - - 65
+      - 52
+      - 50
+    - - 60
+      - 53
+      - 54
+    - - 61
+      - 48
+      - 46
+    - - 59
+      - 44
+      - 42
+    - - 53
+      - 43
+      - 42
+    - - 55
+      - 40
+      - 38
+    - - 52
+      - 39
+      - 38
+    - - 49
+      - 39
+      - 38
+    - - 50
+      - 36
+      - 34
+    - - 47
+      - 36
+      - 34
+    - - 50
+      - 29
+      - 26
+    - - 44
+      - 33
+      - 32
+    - - 33
+      - 34
+      - 34
+    - - 41
+      - 29
+      - 28
+    - - 30
+      - 27
+      - 27
+    - - 33
+      - 22
+      - 21
+    - - 27
+      - 20
+      - 20
+    - - 25
+      - 15
+      - 14
+    - - 13
+      - 13
+      - 13
+    - - 10
+      - 8
+      - 8
+    - - 13
+      - 4
+      - 5
+    - - 7
+      - 4
+      - 5
+    - - 5
+      - 4
+      - 4
+    - - 5
+      - 1
+      - 3
+    - - 4
+      - 4
+      - 3
+    - - 3
+      - 2
+      - 2
+    - - 3
+      - 1
+      - 2
+    - - 2
+      - 3
+      - 2
+    - - 1
+      - 1
+      - 1
+    - - 1
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 0
+  - id: left-ponytail
+    kind: tube
+    points:
+    - - 99
+      - 29
+    - - 94
+      - 58
+    - - 81
+      - 84
+    - - 84
+      - 101
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id001
+  - id: right-ponytail
+    kind: tube
+    points:
+    - - 151
+      - 29
+    - - 157
+      - 59
+    - - 171
+      - 86
+    - - 170
+      - 103
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id001
+  - id: back-neck
+    kind: ellipsoid
+    ellipse:
+    - 127
+    - 76
+    - 5
+    - 5
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id002
+    - &id004
+      - 245
+      - 226
+      - 199
+    - &id005
+      - 243
+      - 226
+      - 202
+    - &id006
+      - 243
+      - 223
+      - 197
+    - - 250
+      - 215
+      - 184
+    - - 252
+      - 207
+      - 173
+    - &id007
+      - 239
+      - 222
+      - 197
+    - &id008
+      - 235
+      - 215
+      - 189
+    - &id009
+      - 226
+      - 210
+      - 188
+    - - 252
+      - 203
+      - 166
+    - - 227
+      - 202
+      - 174
+    - &id010
+      - 213
+      - 195
+      - 172
+    - - 214
+      - 183
+      - 154
+    - &id011
+      - 198
+      - 179
+      - 157
+    - - 209
+      - 162
+      - 128
+    - &id012
+      - 181
+      - 161
+      - 138
+    - &id013
+      - 173
+      - 154
+      - 130
+    - &id014
+      - 158
+      - 143
+      - 121
+    - - 160
+      - 125
+      - 101
+  - id: left-hand
+    kind: ellipsoid
+    ellipse:
+    - 80
+    - 146
+    - 6
+    - 8
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id002
+  - id: right-hand
+    kind: ellipsoid
+    ellipse:
+    - 170
+    - 146
+    - 6
+    - 8
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id002
+  - id: left-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 105
+    - 47
+    - 3
+    - 5
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id003
+    - - 127
+      - 142
+      - 120
+    - - 104
+      - 116
+      - 100
+  - id: right-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 148
+    - 47
+    - 3
+    - 5
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: *id003
+  - id: left-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 111
+    - 34
+    - 5
+    - 5
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: &id015
+    - - 250
+      - 243
+      - 227
+    - - 247
+      - 232
+      - 210
+    - - 246
+      - 229
+      - 205
+    - - 243
+      - 229
+      - 207
+    - - 244
+      - 227
+      - 203
+    - *id004
+    - *id005
+    - - 241
+      - 226
+      - 203
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+    - *id014
+    - - 126
+      - 121
+      - 108
+  - id: right-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 142
+    - 34
+    - 5
+    - 5
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: left-wrist
+    kind: ellipsoid
+    ellipse:
+    - 84
+    - 133
+    - 5
+    - 4
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: right-wrist
+    kind: ellipsoid
+    ellipse:
+    - 166
+    - 136
+    - 5
+    - 4
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: back-strap-buckle
+    kind: ellipsoid
+    ellipse:
+    - 125
+    - 105
+    - 3
+    - 3
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: satchel-clasp
+    kind: ellipsoid
+    ellipse:
+    - 155
+    - 138
+    - 4
+    - 5
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: left-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 117
+    - 216
+    - 4
+    - 4
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  - id: right-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 141
+    - 216
+    - 4
+    - 4
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id015
+  6:
+  - id: cloth-base
+    kind: plane
+    points:
+    - - 1.0
+      - 1.0
+    - - 254.0
+      - 1.0
+    - - 254.0
+      - 254.0
+    - - 1.0
+      - 254.0
+    normal:
+    - 0
+    - 0
+    - 1
+  - id: back-skirt
+    kind: ellipsoid
+    ellipse:
+    - 121.767
+    - 156.4078
+    - 43.0
+    - 34.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: back-left-pleat
+    kind: tube
+    points:
+    - - 110.9685
+      - 126.0082
+    - - 100.5811
+      - 154.0276
+    - - 87.0772
+      - 179.2294
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-middle-pleat
+    kind: tube
+    points:
+    - - 127.0874
+      - 125.1076
+    - - 122.3667
+      - 157.4512
+    - - 117.1694
+      - 185.2476
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-right-pleat
+    kind: tube
+    points:
+    - - 141.7218
+      - 127.238
+    - - 144.9953
+      - 159.6158
+    - - 144.081
+      - 185.5875
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: left-leg
+    kind: tube
+    points:
+    - - 105.6616
+      - 182.1917
+    - - 116.4651
+      - 204.0505
+    - - 117.3838
+      - 221.3598
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: left-boot
+    kind: ellipsoid
+    ellipse:
+    - 117.2757
+    - 223.9449
+    - 8.0
+    - 7.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: right-leg
+    kind: tube
+    points:
+    - - 124.5565
+      - 185.711
+    - - 131.6538
+      - 211.9846
+    - - 134.7931
+      - 228.9228
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: right-boot
+    kind: ellipsoid
+    ellipse:
+    - 135.4232
+    - 229.1681
+    - 9.0
+    - 6.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-torso
+    kind: ellipsoid
+    ellipse:
+    - 127.6007
+    - 112.086
+    - 21.0
+    - 22.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: left-sleeve
+    kind: tube
+    points:
+    - - 96.0296
+      - 116.6674
+    - - 89.5553
+      - 131.6079
+    - - 84.872
+      - 139.0531
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: right-sleeve
+    kind: tube
+    points:
+    - - 155.3795
+      - 114.2867
+    - - 163.4737
+      - 126.3793
+    - - 168.6953
+      - 142.1848
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: back-capelet
+    kind: ellipsoid
+    ellipse:
+    - 126.3939
+    - 100.5016
+    - 30.0
+    - 16.0
+    slope: 0.35
+    yaw: 0
+    metallic: false
+  - id: satchel
+    kind: ellipsoid
+    ellipse:
+    - 150.0652
+    - 138.3021
+    - 12.0
+    - 14.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-strap
+    kind: tube
+    points:
+    - - 112.272
+      - 90.1965
+    - - 126.6865
+      - 114.217
+    - - 147.2163
+      - 136.5233
+    radius: 2.5
+    slope: 0.35
+    braid: false
+    metallic: false
+  - id: back-head-hair
+    kind: ellipsoid
+    ellipse:
+    - 126.0049
+    - 55.2733
+    - 25.0
+    - 27.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: &id016
+    - - 117
+      - 82
+      - 62
+    - - 95
+      - 98
+      - 86
+    - - 108
+      - 81
+      - 65
+    - - 109
+      - 73
+      - 56
+    - - 103
+      - 70
+      - 54
+    - - 92
+      - 70
+      - 60
+    - - 91
+      - 62
+      - 48
+    - - 72
+      - 62
+      - 60
+    - - 73
+      - 59
+      - 55
+    - - 107
+      - 57
+      - 53
+    - - 75
+      - 57
+      - 53
+    - - 74
+      - 57
+      - 52
+    - - 73
+      - 56
+      - 52
+    - - 71
+      - 56
+      - 52
+    - - 71
+      - 55
+      - 51
+    - - 71
+      - 55
+      - 50
+    - - 80
+      - 53
+      - 49
+    - - 69
+      - 53
+      - 50
+    - - 68
+      - 53
+      - 49
+    - - 86
+      - 49
+      - 42
+    - - 95
+      - 36
+      - 38
+    - - 65
+      - 52
+      - 50
+    - - 60
+      - 53
+      - 54
+    - - 61
+      - 48
+      - 46
+    - - 59
+      - 44
+      - 42
+    - - 53
+      - 43
+      - 42
+    - - 55
+      - 40
+      - 38
+    - - 52
+      - 39
+      - 38
+    - - 49
+      - 39
+      - 38
+    - - 50
+      - 36
+      - 34
+    - - 47
+      - 36
+      - 34
+    - - 50
+      - 29
+      - 26
+    - - 44
+      - 33
+      - 32
+    - - 33
+      - 34
+      - 34
+    - - 41
+      - 29
+      - 28
+    - - 30
+      - 27
+      - 27
+    - - 33
+      - 22
+      - 21
+    - - 27
+      - 20
+      - 20
+    - - 25
+      - 15
+      - 14
+    - - 13
+      - 13
+      - 13
+    - - 10
+      - 8
+      - 8
+    - - 13
+      - 4
+      - 5
+    - - 7
+      - 4
+      - 5
+    - - 5
+      - 4
+      - 4
+    - - 5
+      - 1
+      - 3
+    - - 4
+      - 4
+      - 3
+    - - 3
+      - 2
+      - 2
+    - - 3
+      - 1
+      - 2
+    - - 2
+      - 3
+      - 2
+    - - 1
+      - 1
+      - 1
+    - - 1
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 0
+  - id: left-ponytail
+    kind: tube
+    points:
+    - - 98.7776
+      - 35.1032
+    - - 90.5349
+      - 63.8279
+    - - 71.8535
+      - 85.8648
+    - - 73.3336
+      - 106.1546
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id016
+  - id: right-ponytail
+    kind: tube
+    points:
+    - - 151.1743
+      - 35.3858
+    - - 159.4064
+      - 65.5939
+    - - 180.6565
+      - 90.7995
+    - - 181.2381
+      - 109.3341
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id016
+  - id: back-neck
+    kind: ellipsoid
+    ellipse:
+    - 126.8999
+    - 81.4997
+    - 5.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id017
+    - &id019
+      - 245
+      - 226
+      - 199
+    - &id020
+      - 243
+      - 226
+      - 202
+    - &id021
+      - 243
+      - 223
+      - 197
+    - - 250
+      - 215
+      - 184
+    - - 252
+      - 207
+      - 173
+    - &id022
+      - 239
+      - 222
+      - 197
+    - &id023
+      - 235
+      - 215
+      - 189
+    - &id024
+      - 226
+      - 210
+      - 188
+    - - 252
+      - 203
+      - 166
+    - - 227
+      - 202
+      - 174
+    - &id025
+      - 213
+      - 195
+      - 172
+    - - 214
+      - 183
+      - 154
+    - &id026
+      - 198
+      - 179
+      - 157
+    - - 209
+      - 162
+      - 128
+    - &id027
+      - 181
+      - 161
+      - 138
+    - &id028
+      - 173
+      - 154
+      - 130
+    - &id029
+      - 158
+      - 143
+      - 121
+    - - 160
+      - 125
+      - 101
+  - id: left-hand
+    kind: ellipsoid
+    ellipse:
+    - 82.6738
+    - 143.2161
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id017
+  - id: right-hand
+    kind: ellipsoid
+    ellipse:
+    - 171.5032
+    - 154.9018
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id017
+  - id: left-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 102.9631
+    - 52.3626
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id018
+    - - 127
+      - 142
+      - 120
+    - - 104
+      - 116
+      - 100
+  - id: right-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 149.8862
+    - 52.1073
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: *id018
+  - id: left-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 110.925
+    - 40.6198
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: &id030
+    - - 250
+      - 243
+      - 227
+    - - 247
+      - 232
+      - 210
+    - - 246
+      - 229
+      - 205
+    - - 243
+      - 229
+      - 207
+    - - 244
+      - 227
+      - 203
+    - *id019
+    - *id020
+    - - 241
+      - 226
+      - 203
+    - *id021
+    - *id022
+    - *id023
+    - *id024
+    - *id025
+    - *id026
+    - *id027
+    - *id028
+    - *id029
+    - - 126
+      - 121
+      - 108
+  - id: right-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 142.0771
+    - 40.3453
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: left-wrist
+    kind: ellipsoid
+    ellipse:
+    - 83.2999
+    - 137.3613
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: right-wrist
+    kind: ellipsoid
+    ellipse:
+    - 165.9538
+    - 138.7238
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: back-strap-buckle
+    kind: ellipsoid
+    ellipse:
+    - 124.5992
+    - 110.4462
+    - 3.0
+    - 3.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: satchel-clasp
+    kind: ellipsoid
+    ellipse:
+    - 156.2717
+    - 139.2602
+    - 4.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: left-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 115.79
+    - 212.8246
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  - id: right-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 135.912
+    - 222.096
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id030
+  13:
+  - id: cloth-base
+    kind: plane
+    points:
+    - - 1.0
+      - 1.0
+    - - 254.0
+      - 1.0
+    - - 254.0
+      - 254.0
+    - - 1.0
+      - 254.0
+    normal:
+    - 0
+    - 0
+    - 1
+  - id: back-skirt
+    kind: ellipsoid
+    ellipse:
+    - 125.9206
+    - 152.8123
+    - 43.0
+    - 34.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: back-left-pleat
+    kind: tube
+    points:
+    - - 112.0938
+      - 120.2603
+    - - 104.8766
+      - 153.1722
+    - - 97.9217
+      - 178.9183
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-middle-pleat
+    kind: tube
+    points:
+    - - 126.976
+      - 120.2614
+    - - 126.9354
+      - 153.9128
+    - - 125.6405
+      - 183.7593
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-right-pleat
+    kind: tube
+    points:
+    - - 141.0557
+      - 123.2639
+    - - 150.9811
+      - 152.2639
+    - - 154.2903
+      - 177.3707
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: left-leg
+    kind: tube
+    points:
+    - - 116.0452
+      - 180.1054
+    - - 117.0754
+      - 206.4844
+    - - 119.107
+      - 221.5514
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: left-boot
+    kind: ellipsoid
+    ellipse:
+    - 119.0318
+    - 223.3389
+    - 8.0
+    - 7.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: right-leg
+    kind: tube
+    points:
+    - - 134.1386
+      - 182.4281
+    - - 135.5563
+      - 209.3952
+    - - 139.7244
+      - 228.8598
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: right-boot
+    kind: ellipsoid
+    ellipse:
+    - 140.2937
+    - 229.2216
+    - 9.0
+    - 6.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-torso
+    kind: ellipsoid
+    ellipse:
+    - 127.9753
+    - 107.0866
+    - 21.0
+    - 22.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: left-sleeve
+    kind: tube
+    points:
+    - - 96.9394
+      - 110.2326
+    - - 90.7341
+      - 125.4599
+    - - 85.2302
+      - 135.7134
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: right-sleeve
+    kind: tube
+    points:
+    - - 155.0857
+      - 111.1321
+    - - 163.0587
+      - 125.0091
+    - - 168.0457
+      - 138.029
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: back-capelet
+    kind: ellipsoid
+    ellipse:
+    - 126.8321
+    - 94.7498
+    - 30.0
+    - 16.0
+    slope: 0.35
+    yaw: 0
+    metallic: false
+  - id: satchel
+    kind: ellipsoid
+    ellipse:
+    - 148.0705
+    - 136.3771
+    - 12.0
+    - 14.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-strap
+    kind: tube
+    points:
+    - - 113.0553
+      - 84.0877
+    - - 126.9892
+      - 109.1302
+    - - 145.1949
+      - 133.5169
+    radius: 2.5
+    slope: 0.35
+    braid: false
+    metallic: false
+  - id: back-head-hair
+    kind: ellipsoid
+    ellipse:
+    - 126.0447
+    - 49.0473
+    - 25.0
+    - 27.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: &id031
+    - - 117
+      - 82
+      - 62
+    - - 95
+      - 98
+      - 86
+    - - 108
+      - 81
+      - 65
+    - - 109
+      - 73
+      - 56
+    - - 103
+      - 70
+      - 54
+    - - 92
+      - 70
+      - 60
+    - - 91
+      - 62
+      - 48
+    - - 72
+      - 62
+      - 60
+    - - 73
+      - 59
+      - 55
+    - - 107
+      - 57
+      - 53
+    - - 75
+      - 57
+      - 53
+    - - 74
+      - 57
+      - 52
+    - - 73
+      - 56
+      - 52
+    - - 71
+      - 56
+      - 52
+    - - 71
+      - 55
+      - 51
+    - - 71
+      - 55
+      - 50
+    - - 80
+      - 53
+      - 49
+    - - 69
+      - 53
+      - 50
+    - - 68
+      - 53
+      - 49
+    - - 86
+      - 49
+      - 42
+    - - 95
+      - 36
+      - 38
+    - - 65
+      - 52
+      - 50
+    - - 60
+      - 53
+      - 54
+    - - 61
+      - 48
+      - 46
+    - - 59
+      - 44
+      - 42
+    - - 53
+      - 43
+      - 42
+    - - 55
+      - 40
+      - 38
+    - - 52
+      - 39
+      - 38
+    - - 49
+      - 39
+      - 38
+    - - 50
+      - 36
+      - 34
+    - - 47
+      - 36
+      - 34
+    - - 50
+      - 29
+      - 26
+    - - 44
+      - 33
+      - 32
+    - - 33
+      - 34
+      - 34
+    - - 41
+      - 29
+      - 28
+    - - 30
+      - 27
+      - 27
+    - - 33
+      - 22
+      - 21
+    - - 27
+      - 20
+      - 20
+    - - 25
+      - 15
+      - 14
+    - - 13
+      - 13
+      - 13
+    - - 10
+      - 8
+      - 8
+    - - 13
+      - 4
+      - 5
+    - - 7
+      - 4
+      - 5
+    - - 5
+      - 4
+      - 4
+    - - 5
+      - 1
+      - 3
+    - - 4
+      - 4
+      - 3
+    - - 3
+      - 2
+      - 2
+    - - 3
+      - 1
+      - 2
+    - - 2
+      - 3
+      - 2
+    - - 1
+      - 1
+      - 1
+    - - 1
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 0
+  - id: left-ponytail
+    kind: tube
+    points:
+    - - 99.1274
+      - 28.9991
+    - - 94.0429
+      - 58.7225
+    - - 80.7109
+      - 84.4616
+    - - 82.1101
+      - 103.2041
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id031
+  - id: right-ponytail
+    kind: tube
+    points:
+    - - 150.9719
+      - 28.9006
+    - - 157.197
+      - 60.0756
+    - - 170.5473
+      - 86.4084
+    - - 169.7663
+      - 105.4479
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id031
+  - id: back-neck
+    kind: ellipsoid
+    ellipse:
+    - 127.0405
+    - 76.0313
+    - 5.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id032
+    - &id034
+      - 245
+      - 226
+      - 199
+    - &id035
+      - 243
+      - 226
+      - 202
+    - &id036
+      - 243
+      - 223
+      - 197
+    - - 250
+      - 215
+      - 184
+    - - 252
+      - 207
+      - 173
+    - &id037
+      - 239
+      - 222
+      - 197
+    - &id038
+      - 235
+      - 215
+      - 189
+    - &id039
+      - 226
+      - 210
+      - 188
+    - - 252
+      - 203
+      - 166
+    - - 227
+      - 202
+      - 174
+    - &id040
+      - 213
+      - 195
+      - 172
+    - - 214
+      - 183
+      - 154
+    - &id041
+      - 198
+      - 179
+      - 157
+    - - 209
+      - 162
+      - 128
+    - &id042
+      - 181
+      - 161
+      - 138
+    - &id043
+      - 173
+      - 154
+      - 130
+    - &id044
+      - 158
+      - 143
+      - 121
+    - - 160
+      - 125
+      - 101
+  - id: left-hand
+    kind: ellipsoid
+    ellipse:
+    - 80.4652
+    - 145.195
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id032
+  - id: right-hand
+    kind: ellipsoid
+    ellipse:
+    - 169.8207
+    - 146.406
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id032
+  - id: left-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 104.9349
+    - 46.9721
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id033
+    - - 127
+      - 142
+      - 120
+    - - 104
+      - 116
+      - 100
+  - id: right-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 147.9993
+    - 46.867
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: *id033
+  - id: left-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 111.1104
+    - 34.0757
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: &id045
+    - - 250
+      - 243
+      - 227
+    - - 247
+      - 232
+      - 210
+    - - 246
+      - 229
+      - 205
+    - - 243
+      - 229
+      - 207
+    - - 244
+      - 227
+      - 203
+    - *id034
+    - *id035
+    - - 241
+      - 226
+      - 203
+    - *id036
+    - *id037
+    - *id038
+    - *id039
+    - *id040
+    - *id041
+    - *id042
+    - *id043
+    - *id044
+    - - 126
+      - 121
+      - 108
+  - id: right-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 141.9416
+    - 33.9723
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: left-wrist
+    kind: ellipsoid
+    ellipse:
+    - 83.5929
+    - 133.8267
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: right-wrist
+    kind: ellipsoid
+    ellipse:
+    - 166.1403
+    - 136.3693
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: back-strap-buckle
+    kind: ellipsoid
+    ellipse:
+    - 124.8804
+    - 105.0011
+    - 3.0
+    - 3.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: satchel-clasp
+    kind: ellipsoid
+    ellipse:
+    - 155.1806
+    - 138.106
+    - 4.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: left-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 117.6975
+    - 216.6008
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  - id: right-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 143.4785
+    - 222.4609
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id045
+  20:
+  - id: cloth-base
+    kind: plane
+    points:
+    - - 1.0
+      - 1.0
+    - - 254.0
+      - 1.0
+    - - 254.0
+      - 254.0
+    - - 1.0
+      - 254.0
+    normal:
+    - 0
+    - 0
+    - 1
+  - id: back-skirt
+    kind: ellipsoid
+    ellipse:
+    - 120.6452
+    - 156.7255
+    - 43.0
+    - 34.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: back-left-pleat
+    kind: tube
+    points:
+    - - 111.0133
+      - 125.9362
+    - - 99.341
+      - 154.101
+    - - 85.2512
+      - 178.0494
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-middle-pleat
+    kind: tube
+    points:
+    - - 127.7487
+      - 125.7702
+    - - 121.1198
+      - 157.769
+    - - 115.0293
+      - 185.7797
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-right-pleat
+    kind: tube
+    points:
+    - - 141.5722
+      - 127.2164
+    - - 143.5184
+      - 160.2385
+    - - 142.7867
+      - 186.1851
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: left-leg
+    kind: tube
+    points:
+    - - 103.0559
+      - 181.8836
+    - - 116.2926
+      - 209.3188
+    - - 117.1722
+      - 227.3504
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: left-boot
+    kind: ellipsoid
+    ellipse:
+    - 116.8027
+    - 229.5428
+    - 8.0
+    - 7.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: right-leg
+    kind: tube
+    points:
+    - - 122.8887
+      - 186.0763
+    - - 131.4614
+      - 212.317
+    - - 133.3628
+      - 225.8467
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: right-boot
+    kind: ellipsoid
+    ellipse:
+    - 133.3594
+    - 225.7431
+    - 9.0
+    - 6.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-torso
+    kind: ellipsoid
+    ellipse:
+    - 127.9459
+    - 112.6868
+    - 21.0
+    - 22.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: left-sleeve
+    kind: tube
+    points:
+    - - 95.8066
+      - 116.7852
+    - - 89.6628
+      - 131.548
+    - - 84.618
+      - 138.8849
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: right-sleeve
+    kind: tube
+    points:
+    - - 155.1298
+      - 114.5248
+    - - 162.8046
+      - 126.3199
+    - - 168.4472
+      - 142.2515
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: back-capelet
+    kind: ellipsoid
+    ellipse:
+    - 126.2992
+    - 100.6338
+    - 30.0
+    - 16.0
+    slope: 0.35
+    yaw: 0
+    metallic: false
+  - id: satchel
+    kind: ellipsoid
+    ellipse:
+    - 149.8847
+    - 138.0151
+    - 12.0
+    - 14.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-strap
+    kind: tube
+    points:
+    - - 112.2032
+      - 90.6799
+    - - 127.0984
+      - 114.8075
+    - - 146.9871
+      - 136.4725
+    radius: 2.5
+    slope: 0.35
+    braid: false
+    metallic: false
+  - id: back-head-hair
+    kind: ellipsoid
+    ellipse:
+    - 126.013
+    - 55.5713
+    - 25.0
+    - 27.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: &id046
+    - - 117
+      - 82
+      - 62
+    - - 95
+      - 98
+      - 86
+    - - 108
+      - 81
+      - 65
+    - - 109
+      - 73
+      - 56
+    - - 103
+      - 70
+      - 54
+    - - 92
+      - 70
+      - 60
+    - - 91
+      - 62
+      - 48
+    - - 72
+      - 62
+      - 60
+    - - 73
+      - 59
+      - 55
+    - - 107
+      - 57
+      - 53
+    - - 75
+      - 57
+      - 53
+    - - 74
+      - 57
+      - 52
+    - - 73
+      - 56
+      - 52
+    - - 71
+      - 56
+      - 52
+    - - 71
+      - 55
+      - 51
+    - - 71
+      - 55
+      - 50
+    - - 80
+      - 53
+      - 49
+    - - 69
+      - 53
+      - 50
+    - - 68
+      - 53
+      - 49
+    - - 86
+      - 49
+      - 42
+    - - 95
+      - 36
+      - 38
+    - - 65
+      - 52
+      - 50
+    - - 60
+      - 53
+      - 54
+    - - 61
+      - 48
+      - 46
+    - - 59
+      - 44
+      - 42
+    - - 53
+      - 43
+      - 42
+    - - 55
+      - 40
+      - 38
+    - - 52
+      - 39
+      - 38
+    - - 49
+      - 39
+      - 38
+    - - 50
+      - 36
+      - 34
+    - - 47
+      - 36
+      - 34
+    - - 50
+      - 29
+      - 26
+    - - 44
+      - 33
+      - 32
+    - - 33
+      - 34
+      - 34
+    - - 41
+      - 29
+      - 28
+    - - 30
+      - 27
+      - 27
+    - - 33
+      - 22
+      - 21
+    - - 27
+      - 20
+      - 20
+    - - 25
+      - 15
+      - 14
+    - - 13
+      - 13
+      - 13
+    - - 10
+      - 8
+      - 8
+    - - 13
+      - 4
+      - 5
+    - - 7
+      - 4
+      - 5
+    - - 5
+      - 4
+      - 4
+    - - 5
+      - 1
+      - 3
+    - - 4
+      - 4
+      - 3
+    - - 3
+      - 2
+      - 2
+    - - 3
+      - 1
+      - 2
+    - - 2
+      - 3
+      - 2
+    - - 1
+      - 1
+      - 1
+    - - 1
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 0
+  - id: left-ponytail
+    kind: tube
+    points:
+    - - 98.8899
+      - 34.9689
+    - - 89.0395
+      - 62.0388
+    - - 70.3398
+      - 84.7995
+    - - 69.2744
+      - 108.1021
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id046
+  - id: right-ponytail
+    kind: tube
+    points:
+    - - 151.1246
+      - 35.538
+    - - 159.8827
+      - 63.9853
+    - - 180.8292
+      - 88.8001
+    - - 176.9176
+      - 110.9463
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id046
+  - id: back-neck
+    kind: ellipsoid
+    ellipse:
+    - 126.649
+    - 82.3481
+    - 5.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id047
+    - &id049
+      - 245
+      - 226
+      - 199
+    - &id050
+      - 243
+      - 226
+      - 202
+    - &id051
+      - 243
+      - 223
+      - 197
+    - - 250
+      - 215
+      - 184
+    - - 252
+      - 207
+      - 173
+    - &id052
+      - 239
+      - 222
+      - 197
+    - &id053
+      - 235
+      - 215
+      - 189
+    - &id054
+      - 226
+      - 210
+      - 188
+    - - 252
+      - 203
+      - 166
+    - - 227
+      - 202
+      - 174
+    - &id055
+      - 213
+      - 195
+      - 172
+    - - 214
+      - 183
+      - 154
+    - &id056
+      - 198
+      - 179
+      - 157
+    - - 209
+      - 162
+      - 128
+    - &id057
+      - 181
+      - 161
+      - 138
+    - &id058
+      - 173
+      - 154
+      - 130
+    - &id059
+      - 158
+      - 143
+      - 121
+    - - 160
+      - 125
+      - 101
+  - id: left-hand
+    kind: ellipsoid
+    ellipse:
+    - 82.7593
+    - 142.5128
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id047
+  - id: right-hand
+    kind: ellipsoid
+    ellipse:
+    - 171.2898
+    - 155.3255
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id047
+  - id: left-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 103.5155
+    - 52.8382
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id048
+    - - 127
+      - 142
+      - 120
+    - - 104
+      - 116
+      - 100
+  - id: right-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 148.4867
+    - 52.7817
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: *id048
+  - id: left-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 110.9983
+    - 40.8448
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: &id060
+    - - 250
+      - 243
+      - 227
+    - - 247
+      - 232
+      - 210
+    - - 246
+      - 229
+      - 205
+    - - 243
+      - 229
+      - 207
+    - - 244
+      - 227
+      - 203
+    - *id049
+    - *id050
+    - - 241
+      - 226
+      - 203
+    - *id051
+    - *id052
+    - *id053
+    - *id054
+    - *id055
+    - *id056
+    - *id057
+    - *id058
+    - *id059
+    - - 126
+      - 121
+      - 108
+  - id: right-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 142.0128
+    - 40.7463
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: left-wrist
+    kind: ellipsoid
+    ellipse:
+    - 83.172
+    - 137.1145
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: right-wrist
+    kind: ellipsoid
+    ellipse:
+    - 165.6978
+    - 138.4879
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: back-strap-buckle
+    kind: ellipsoid
+    ellipse:
+    - 124.869
+    - 110.9497
+    - 3.0
+    - 3.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: satchel-clasp
+    kind: ellipsoid
+    ellipse:
+    - 156.091
+    - 138.9279
+    - 4.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: left-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 115.9943
+    - 221.0304
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  - id: right-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 134.7487
+    - 219.1689
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id060
+  26:
+  - id: cloth-base
+    kind: plane
+    points:
+    - - 1.0
+      - 1.0
+    - - 254.0
+      - 1.0
+    - - 254.0
+      - 254.0
+    - - 1.0
+      - 254.0
+    normal:
+    - 0
+    - 0
+    - 1
+  - id: back-skirt
+    kind: ellipsoid
+    ellipse:
+    - 126.0284
+    - 153.1686
+    - 43.0
+    - 34.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: back-left-pleat
+    kind: tube
+    points:
+    - - 111.9833
+      - 120.2184
+    - - 104.9562
+      - 153.1857
+    - - 98.0914
+      - 179.1083
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-middle-pleat
+    kind: tube
+    points:
+    - - 127.0149
+      - 120.116
+    - - 127.029
+      - 154.2009
+    - - 125.9547
+      - 183.1118
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: back-right-pleat
+    kind: tube
+    points:
+    - - 141.0338
+      - 123.2204
+    - - 151.0311
+      - 152.0448
+    - - 155.0381
+      - 177.0334
+    radius: 8
+    slope: 0.42
+    braid: false
+    metallic: false
+  - id: left-leg
+    kind: tube
+    points:
+    - - 116.0113
+      - 180.0942
+    - - 117.0791
+      - 204.3825
+    - - 119.1179
+      - 223.8115
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: left-boot
+    kind: ellipsoid
+    ellipse:
+    - 119.1463
+    - 225.7969
+    - 8.0
+    - 7.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: right-leg
+    kind: tube
+    points:
+    - - 133.9851
+      - 182.084
+    - - 135.2865
+      - 209.0863
+    - - 138.3435
+      - 233.3588
+    radius: 8
+    slope: 0.5
+    braid: false
+    metallic: false
+  - id: right-boot
+    kind: ellipsoid
+    ellipse:
+    - 139.3015
+    - 235.2446
+    - 9.0
+    - 6.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-torso
+    kind: ellipsoid
+    ellipse:
+    - 128.0423
+    - 107.1686
+    - 21.0
+    - 22.0
+    slope: 0.36
+    yaw: 0
+    metallic: false
+  - id: left-sleeve
+    kind: tube
+    points:
+    - - 97.025
+      - 110.2531
+    - - 90.9363
+      - 125.2118
+    - - 85.0141
+      - 136.1744
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: right-sleeve
+    kind: tube
+    points:
+    - - 154.9978
+      - 111.154
+    - - 163.0488
+      - 125.2666
+    - - 168.1066
+      - 138.2539
+    radius: 9
+    slope: 0.45
+    braid: false
+    metallic: false
+  - id: back-capelet
+    kind: ellipsoid
+    ellipse:
+    - 126.9439
+    - 95.0106
+    - 30.0
+    - 16.0
+    slope: 0.35
+    yaw: 0
+    metallic: false
+  - id: satchel
+    kind: ellipsoid
+    ellipse:
+    - 147.9889
+    - 136.0878
+    - 12.0
+    - 14.0
+    slope: 0.45
+    yaw: 0
+    metallic: false
+  - id: back-strap
+    kind: tube
+    points:
+    - - 112.98
+      - 84.1138
+    - - 127.0297
+      - 109.148
+    - - 145.0069
+      - 133.1041
+    radius: 2.5
+    slope: 0.35
+    braid: false
+    metallic: false
+  - id: back-head-hair
+    kind: ellipsoid
+    ellipse:
+    - 126.0719
+    - 49.1525
+    - 25.0
+    - 27.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: &id061
+    - - 117
+      - 82
+      - 62
+    - - 95
+      - 98
+      - 86
+    - - 108
+      - 81
+      - 65
+    - - 109
+      - 73
+      - 56
+    - - 103
+      - 70
+      - 54
+    - - 92
+      - 70
+      - 60
+    - - 91
+      - 62
+      - 48
+    - - 72
+      - 62
+      - 60
+    - - 73
+      - 59
+      - 55
+    - - 107
+      - 57
+      - 53
+    - - 75
+      - 57
+      - 53
+    - - 74
+      - 57
+      - 52
+    - - 73
+      - 56
+      - 52
+    - - 71
+      - 56
+      - 52
+    - - 71
+      - 55
+      - 51
+    - - 71
+      - 55
+      - 50
+    - - 80
+      - 53
+      - 49
+    - - 69
+      - 53
+      - 50
+    - - 68
+      - 53
+      - 49
+    - - 86
+      - 49
+      - 42
+    - - 95
+      - 36
+      - 38
+    - - 65
+      - 52
+      - 50
+    - - 60
+      - 53
+      - 54
+    - - 61
+      - 48
+      - 46
+    - - 59
+      - 44
+      - 42
+    - - 53
+      - 43
+      - 42
+    - - 55
+      - 40
+      - 38
+    - - 52
+      - 39
+      - 38
+    - - 49
+      - 39
+      - 38
+    - - 50
+      - 36
+      - 34
+    - - 47
+      - 36
+      - 34
+    - - 50
+      - 29
+      - 26
+    - - 44
+      - 33
+      - 32
+    - - 33
+      - 34
+      - 34
+    - - 41
+      - 29
+      - 28
+    - - 30
+      - 27
+      - 27
+    - - 33
+      - 22
+      - 21
+    - - 27
+      - 20
+      - 20
+    - - 25
+      - 15
+      - 14
+    - - 13
+      - 13
+      - 13
+    - - 10
+      - 8
+      - 8
+    - - 13
+      - 4
+      - 5
+    - - 7
+      - 4
+      - 5
+    - - 5
+      - 4
+      - 4
+    - - 5
+      - 1
+      - 3
+    - - 4
+      - 4
+      - 3
+    - - 3
+      - 2
+      - 2
+    - - 3
+      - 1
+      - 2
+    - - 2
+      - 3
+      - 2
+    - - 1
+      - 1
+      - 1
+    - - 1
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 1
+    - - 0
+      - 0
+      - 0
+  - id: left-ponytail
+    kind: tube
+    points:
+    - - 99.0864
+      - 28.9576
+    - - 94.0761
+      - 58.0776
+    - - 80.8688
+      - 84.5686
+    - - 83.6524
+      - 101.6446
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id061
+  - id: right-ponytail
+    kind: tube
+    points:
+    - - 150.9975
+      - 29.0453
+    - - 156.9026
+      - 59.2329
+    - - 170.2705
+      - 86.1786
+    - - 169.7809
+      - 103.0685
+    radius: 10
+    slope: 0.55
+    braid: false
+    metallic: false
+    palette_colors: *id061
+  - id: back-neck
+    kind: ellipsoid
+    ellipse:
+    - 126.8689
+    - 76.2017
+    - 5.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id062
+    - &id064
+      - 245
+      - 226
+      - 199
+    - &id065
+      - 243
+      - 226
+      - 202
+    - &id066
+      - 243
+      - 223
+      - 197
+    - - 250
+      - 215
+      - 184
+    - - 252
+      - 207
+      - 173
+    - &id067
+      - 239
+      - 222
+      - 197
+    - &id068
+      - 235
+      - 215
+      - 189
+    - &id069
+      - 226
+      - 210
+      - 188
+    - - 252
+      - 203
+      - 166
+    - - 227
+      - 202
+      - 174
+    - &id070
+      - 213
+      - 195
+      - 172
+    - - 214
+      - 183
+      - 154
+    - &id071
+      - 198
+      - 179
+      - 157
+    - - 209
+      - 162
+      - 128
+    - &id072
+      - 181
+      - 161
+      - 138
+    - &id073
+      - 173
+      - 154
+      - 130
+    - &id074
+      - 158
+      - 143
+      - 121
+    - - 160
+      - 125
+      - 101
+  - id: left-hand
+    kind: ellipsoid
+    ellipse:
+    - 80.0904
+    - 145.9533
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id062
+  - id: right-hand
+    kind: ellipsoid
+    ellipse:
+    - 170.0486
+    - 146.1722
+    - 6.0
+    - 8.0
+    slope: 0.5
+    yaw: 0
+    metallic: false
+    palette_colors: *id062
+  - id: left-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 104.9817
+    - 46.9844
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: &id063
+    - - 127
+      - 142
+      - 120
+    - - 104
+      - 116
+      - 100
+  - id: right-jade-leaf
+    kind: ellipsoid
+    ellipse:
+    - 148.1278
+    - 46.924
+    - 3.0
+    - 5.0
+    slope: 0.4
+    yaw: 0
+    metallic: false
+    palette_colors: *id063
+  - id: left-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 111.0625
+    - 34.1241
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: &id075
+    - - 250
+      - 243
+      - 227
+    - - 247
+      - 232
+      - 210
+    - - 246
+      - 229
+      - 205
+    - - 243
+      - 229
+      - 207
+    - - 244
+      - 227
+      - 203
+    - *id064
+    - *id065
+    - - 241
+      - 226
+      - 203
+    - *id066
+    - *id067
+    - *id068
+    - *id069
+    - *id070
+    - *id071
+    - *id072
+    - *id073
+    - *id074
+    - - 126
+      - 121
+      - 108
+  - id: right-hair-cuff
+    kind: ellipsoid
+    ellipse:
+    - 141.9884
+    - 34.0544
+    - 5.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: left-wrist
+    kind: ellipsoid
+    ellipse:
+    - 83.9723
+    - 133.2327
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: right-wrist
+    kind: ellipsoid
+    ellipse:
+    - 166.1274
+    - 136.2847
+    - 5.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: back-strap-buckle
+    kind: ellipsoid
+    ellipse:
+    - 124.9823
+    - 105.1281
+    - 3.0
+    - 3.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: satchel-clasp
+    kind: ellipsoid
+    ellipse:
+    - 155.0386
+    - 138.1488
+    - 4.0
+    - 5.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: left-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 117.0332
+    - 215.8576
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075
+  - id: right-boot-buckle
+    kind: ellipsoid
+    ellipse:
+    - 141.1014
+    - 216.999
+    - 4.0
+    - 4.0
+    slope: 0.55
+    yaw: 0
+    metallic: true
+    palette_colors: *id075

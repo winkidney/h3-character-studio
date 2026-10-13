@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source_sha256": "1e629c44ebdac17d33ea1ee56df3793bd5ad52987d61becd27dee1b5ba6238a2",
+  "output_sha256": "85b4f7556ee61a8542b5feeb4b1ea6afd7ff650bcff2b4923f6892e0847e60bd",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "source_solid_bbox": [
+    285,
+    46,
+    989,
+    1217
+  ],
+  "source_root_x": 635,
+  "scale": 0.5533731853116994,
+  "offset": [
+    33,
+    47
+  ],
+  "size": [
+    768,
+    768
+  ],
+  "character_height": 648,
+  "ground": 720,
+  "resize": "nearest",
+  "alpha_anchor_threshold": 128,
+  "per_animation_frame_recentering": false
+}
