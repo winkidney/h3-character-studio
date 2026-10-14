@@ -15,18 +15,17 @@ python3.12 -m venv .venv
 阅读 THIRD_PARTY.md 的模型许可，准备约 52 GB 权重空间，并另留环境和生成帧的空间。
 
 ```sh
-.venv/bin/h3-character download-models --models-dir models
+.venv/bin/h3-character download-models
 ```
 
 下载使用随包 `data/models.lock.json` 的固定 revision、文件大小与 SHA-256。先写 `.part`，验证后才改为正式文件。已存在但校验失败的文件不会被覆盖；网络中断时保留 `.part`，检查后将其移到备份位置再重跑。不会盲目反复下载大文件。
 
-已有权重时，复制 `examples/model-files.template.yaml` 为忽略的 `.local/model-files.yaml`，改成自己的绝对路径。`prepare-runtime --model-files .local/model-files.yaml` 只读原文件，核对完整摘要并写入运行环境的模型搜索路径。
+默认公共模型目录为 `~/Models/shared`，也可用 `--models-dir /absolute/path` 指定。H3 权重按 `diffusion_models/`、`text_encoders/`、`vae/` 分类，ToonOut 保存为 `toonout/toonout.pth`。与 Asset Workbench 共用目录时，已有且通过 SHA-256 校验的文件直接复用，无需 overrides 或再次下载。Asset Workbench 的机器配置 `~/.config/asset-workbench/models.yaml` 可设置 `root: /home/用户名/Models/shared`。
 
 ## 固定源码与 GPU 环境
 
 ```sh
-.venv/bin/h3-character prepare-runtime --runtime .runtime --models-dir models --install-gpu
-# 已有权重：额外传 --model-files .local/model-files.yaml。
+.venv/bin/h3-character prepare-runtime --runtime .runtime --install-gpu
 make wheel
 .runtime/venv/bin/python -m pip install --no-deps dist/h3_character_studio-0.1.0-py3-none-any.whl
 .runtime/venv/bin/python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'

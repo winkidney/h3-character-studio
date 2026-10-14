@@ -16,9 +16,10 @@
 make install
 .venv/bin/h3-character --help
 # 首次从上游下载固定版本与固定摘要的权重。
-.venv/bin/h3-character download-models --models-dir models
-# 已有权重可以用 YAML 指向原文件，不用复制 50 GB。
-.venv/bin/h3-character prepare-runtime --runtime .runtime --models-dir models --install-gpu
+# 默认模型目录 ~/Models/shared，可与 Asset Workbench 共用
+.venv/bin/h3-character download-models
+# 公共目录中已有的权重会通过摘要校验后直接复用。
+.venv/bin/h3-character prepare-runtime --runtime .runtime --install-gpu
 make wheel
 .runtime/venv/bin/python -m pip install --no-deps dist/h3_character_studio-0.1.0-py3-none-any.whl
 .runtime/venv/bin/h3-character serve --runtime .runtime

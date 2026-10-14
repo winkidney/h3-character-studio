@@ -15,9 +15,9 @@ def parser():
     q = sub.add_parser("validate"); q.add_argument("character", type=Path)
     q = sub.add_parser("normalize-master"); q.add_argument("source", type=Path)
     q.add_argument("--output", required=True, type=Path); q.add_argument("--root-x", required=True, type=float)
-    q = sub.add_parser("download-models"); q.add_argument("--models-dir", required=True, type=Path)
+    q = sub.add_parser("download-models"); q.add_argument("--models-dir", default=setup.model_root(), type=Path)
     q = sub.add_parser("prepare-runtime")
-    q.add_argument("--runtime", required=True, type=Path); q.add_argument("--models-dir", required=True, type=Path)
+    q.add_argument("--runtime", required=True, type=Path); q.add_argument("--models-dir", default=setup.model_root(), type=Path)
     q.add_argument("--model-files", type=Path, help="YAML map of model ID to existing file path")
     q.add_argument("--source-caches", type=Path, help="YAML map of comfyui/birefnet to local clean Git source cache")
     q.add_argument("--install-gpu", action="store_true")
@@ -71,7 +71,13 @@ def execute(args):
         required = {"H3CharacterRawFrames", "H3CharacterReference", "MiniMaxH3ImageToVideo", "MiniMaxH3AddGuide"}
         missing = sorted(required - set(info))
         if missing: raise ValueError("Required nodes missing: " + str(missing))
-        if args.verify_models: setup.verify_models(".", runtime["models"])
+        if args.verify_models:
+            if "models_root" in runtime:
+                verified = setup.verify_models(runtime["models_root"])
+                if verified != runtime["models"]:
+                    raise ValueError("Runtime model paths differ from its model root")
+            else:
+                setup.verify_models(".", runtime["models"])
         return dict(nodes_ready=True, models_verified=args.verify_models,
                     system_stats=generation.request(args.url, "/system_stats"), inference_verified=False)
     if c == "prepare": return generation.prepare(args.character, args.direction, args.output, args.url)

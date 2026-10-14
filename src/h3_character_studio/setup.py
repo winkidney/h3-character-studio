@@ -20,6 +20,14 @@ def models():
     return json.loads((DATA / "models.lock.json").read_text())["models"]
 
 
+def model_root():
+    return Path.home() / "Models" / "shared"
+
+
+def model_path(root, row):
+    return Path(root) / row["subdir"] / row.get("filename", Path(row["file"]).name)
+
+
 def verify_models(root, overrides=None):
     overrides = overrides or {}
     unknown = set(overrides) - {row["id"] for row in models()}
@@ -27,7 +35,7 @@ def verify_models(root, overrides=None):
         raise ValueError("Unknown model IDs: " + str(sorted(unknown)))
     result = {}
     for row in models():
-        path = Path(overrides.get(row["id"], Path(root) / row["file"])).expanduser().resolve(strict=True)
+        path = Path(overrides.get(row["id"], model_path(root, row))).expanduser().resolve(strict=True)
         if path.stat().st_size != row["size"] or core.digest(path) != row["sha256"]:
             raise ValueError("Model bytes or SHA-256 mismatch: " + row["id"])
         result[row["id"]] = str(path)
@@ -37,7 +45,7 @@ def verify_models(root, overrides=None):
 def download_models(root):
     root = Path(root).absolute()
     for row in models():
-        path = root / row["file"]
+        path = model_path(root, row)
         if path.exists():
             if path.stat().st_size != row["size"] or core.digest(path) != row["sha256"]:
                 raise ValueError("Existing model changed; inspect without overwriting: " + str(path))
@@ -108,6 +116,8 @@ def prepare(runtime, models_root, overrides=None, *, install_gpu=False, source_c
         "\nsys.path.insert(0, source)\nsys.argv[0] = source + '/main.py'\nrunpy.run_path(sys.argv[0], run_name='__main__')\n")
     record = dict(schema_version=1, python=str(python), sources={name: str(runtime / "sources" / name) for name in SOURCES},
                   models=references, gpu_dependencies_installed=install_gpu, inference_verified=False)
+    if not overrides:
+        record["models_root"] = str(Path(models_root).expanduser().resolve())
     core.write_json(runtime / "runtime.json", record)
     return record
 
